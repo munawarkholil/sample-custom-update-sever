@@ -5,10 +5,10 @@ do
     esac
 done
 
-cd ../expo-updates-client
+cd ../mobile
 expo export --experimental-bundle
-cd ../expo-updates-server
+cd ../sample-update-server
 rm -rf updates/$directory/
-cp -r ../expo-updates-client/dist/ updates/$directory
+cp -r ../mobile/dist/ updates/$directory
 
 node ./scripts/exportClientExpoConfig.js > updates/$directory/expoConfig.json
