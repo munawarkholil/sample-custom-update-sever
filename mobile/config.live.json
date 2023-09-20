@@ -1,0 +1,17 @@
+{
+  "config": {
+    "domain": "domain.com",
+    "errorReport": {
+      "telegramIds": [
+        "-1001212227631"
+      ]
+    },
+    "isDebug": 0,
+    "group_id": 4,
+    "salt": "CHANGE_INTO_YOUR_OWN_SALT",
+    "home": {
+      "public": "main/index",
+      "member": "main/index"
+    }
+  }
+}
