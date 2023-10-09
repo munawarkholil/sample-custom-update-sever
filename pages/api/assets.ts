@@ -10,7 +10,6 @@ import {
 } from '../../common/helpers';
 
 export default async function assetsEndpoint(req: NextApiRequest, res: NextApiResponse) {
-  console.log("ACCESS LOG assetsEndpoint", req.url)
   const { asset: assetName, runtimeVersion, platform } = req.query;
 
   if (!assetName || typeof assetName !== 'string') {

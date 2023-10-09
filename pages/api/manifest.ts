@@ -4,21 +4,20 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { serializeDictionary } from 'structured-headers';
 
 import {
-  NoUpdateAvailableError,
+  getAssetMetadataAsync,
+  getMetadataAsync,
   convertSHA256HashToUUID,
   convertToDictionaryItemsRepresentation,
-  createNoUpdateAvailableDirectiveAsync,
-  createRollBackDirectiveAsync,
-  getAssetMetadataAsync,
+  signRSASHA256,
+  getPrivateKeyAsync,
   getExpoConfigAsync,
   getLatestUpdateBundlePathForRuntimeVersionAsync,
-  getMetadataAsync,
-  getPrivateKeyAsync,
-  signRSASHA256,
+  createRollBackDirectiveAsync,
+  NoUpdateAvailableError,
+  createNoUpdateAvailableDirectiveAsync,
 } from '../../common/helpers';
 
 export default async function manifestEndpoint(req: NextApiRequest, res: NextApiResponse) {
-  console.log("ACCESS LOG manifestEndpoint", req.url)
   if (req.method !== 'GET') {
     res.statusCode = 405;
     res.json({ error: 'Expected GET.' });
@@ -112,7 +111,6 @@ async function putUpdateInResponseAsync(
   platform: string,
   protocolVersion: number
 ): Promise<void> {
-  console.log("ACCESS LOG putUpdateInResponseAsync", req.url)
   const currentUpdateId = req.headers['expo-current-update-id'];
   const { metadataJson, createdAt, id } = await getMetadataAsync({
     updateBundlePath,
@@ -214,7 +212,6 @@ async function putRollBackInResponseAsync(
   updateBundlePath: string,
   protocolVersion: number
 ): Promise<void> {
-  console.log("ACCESS LOG putRollBackInResponseAsync", req.url)
   if (protocolVersion === 0) {
     throw new Error('Rollbacks not supported on protocol version 0');
   }
@@ -274,7 +271,6 @@ async function putNoUpdateAvailableInResponseAsync(
   res: NextApiResponse,
   protocolVersion: number
 ): Promise<void> {
-  console.log("ACCESS LOG putNoUpdateAvailableInResponseAsync", req.url)
   if (protocolVersion === 0) {
     throw new Error('NoUpdateAvailable directive not available in protocol version 0');
   }
