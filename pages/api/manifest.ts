@@ -4,17 +4,17 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { serializeDictionary } from 'structured-headers';
 
 import {
-  NoUpdateAvailableError,
+  getAssetMetadataAsync,
+  getMetadataAsync,
   convertSHA256HashToUUID,
   convertToDictionaryItemsRepresentation,
-  createNoUpdateAvailableDirectiveAsync,
-  createRollBackDirectiveAsync,
-  getAssetMetadataAsync,
+  signRSASHA256,
+  getPrivateKeyAsync,
   getExpoConfigAsync,
   getLatestUpdateBundlePathForRuntimeVersionAsync,
-  getMetadataAsync,
-  getPrivateKeyAsync,
-  signRSASHA256,
+  createRollBackDirectiveAsync,
+  NoUpdateAvailableError,
+  createNoUpdateAvailableDirectiveAsync,
 } from '../../common/helpers';
 
 export default async function manifestEndpoint(req: NextApiRequest, res: NextApiResponse) {
@@ -38,7 +38,7 @@ export default async function manifestEndpoint(req: NextApiRequest, res: NextApi
   if (platform !== 'ios' && platform !== 'android') {
     res.statusCode = 400;
     res.json({
-      error: 'Unsupported platform. Expected either ios or androidsssss',
+      error: 'Unsupported platform. Expected either ios or android.',
     });
     return;
   }
