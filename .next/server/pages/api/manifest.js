@@ -1,334 +1,105 @@
 "use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
 (() => {
 var exports = {};
-exports.id = 378;
-exports.ids = [378];
+exports.id = "pages/api/manifest";
+exports.ids = ["pages/api/manifest"];
 exports.modules = {
 
-/***/ 11:
+/***/ "form-data":
+/*!****************************!*\
+  !*** external "form-data" ***!
+  \****************************/
+/***/ ((module) => {
+
+module.exports = require("form-data");
+
+/***/ }),
+
+/***/ "mime":
+/*!***********************!*\
+  !*** external "mime" ***!
+  \***********************/
 /***/ ((module) => {
 
 module.exports = require("mime");
 
 /***/ }),
 
-/***/ 113:
+/***/ "structured-headers":
+/*!*************************************!*\
+  !*** external "structured-headers" ***!
+  \*************************************/
+/***/ ((module) => {
+
+module.exports = require("structured-headers");
+
+/***/ }),
+
+/***/ "crypto":
+/*!*************************!*\
+  !*** external "crypto" ***!
+  \*************************/
 /***/ ((module) => {
 
 module.exports = require("crypto");
 
 /***/ }),
 
-/***/ 147:
+/***/ "fs":
+/*!*********************!*\
+  !*** external "fs" ***!
+  \*********************/
 /***/ ((module) => {
 
 module.exports = require("fs");
 
 /***/ }),
 
-/***/ 292:
+/***/ "fs/promises":
+/*!******************************!*\
+  !*** external "fs/promises" ***!
+  \******************************/
 /***/ ((module) => {
 
 module.exports = require("fs/promises");
 
 /***/ }),
 
-/***/ 17:
+/***/ "path":
+/*!***********************!*\
+  !*** external "path" ***!
+  \***********************/
 /***/ ((module) => {
 
 module.exports = require("path");
 
 /***/ }),
 
-/***/ 637:
+/***/ "(api)/./common/helpers.ts":
+/*!***************************!*\
+  !*** ./common/helpers.ts ***!
+  \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// ESM COMPAT FLAG
-__webpack_require__.r(__webpack_exports__);
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"NoUpdateAvailableError\": () => (/* binding */ NoUpdateAvailableError),\n/* harmony export */   \"convertToDictionaryItemsRepresentation\": () => (/* binding */ convertToDictionaryItemsRepresentation),\n/* harmony export */   \"signRSASHA256\": () => (/* binding */ signRSASHA256),\n/* harmony export */   \"getPrivateKeyAsync\": () => (/* binding */ getPrivateKeyAsync),\n/* harmony export */   \"getLatestUpdateBundlePathForRuntimeVersionAsync\": () => (/* binding */ getLatestUpdateBundlePathForRuntimeVersionAsync),\n/* harmony export */   \"getAssetMetadataAsync\": () => (/* binding */ getAssetMetadataAsync),\n/* harmony export */   \"createRollBackDirectiveAsync\": () => (/* binding */ createRollBackDirectiveAsync),\n/* harmony export */   \"createNoUpdateAvailableDirectiveAsync\": () => (/* binding */ createNoUpdateAvailableDirectiveAsync),\n/* harmony export */   \"getMetadataAsync\": () => (/* binding */ getMetadataAsync),\n/* harmony export */   \"getExpoConfigAsync\": () => (/* binding */ getExpoConfigAsync),\n/* harmony export */   \"convertSHA256HashToUUID\": () => (/* binding */ convertSHA256HashToUUID),\n/* harmony export */   \"truthy\": () => (/* binding */ truthy)\n/* harmony export */ });\n/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! crypto */ \"crypto\");\n/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fs */ \"fs\");\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var fs_promises__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! fs/promises */ \"fs/promises\");\n/* harmony import */ var fs_promises__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(fs_promises__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var mime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! mime */ \"mime\");\n/* harmony import */ var mime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(mime__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_4__);\n\n\n\n\n\nclass NoUpdateAvailableError extends Error {\n}\nfunction createHash(file, hashingAlgorithm, encoding) {\n    return crypto__WEBPACK_IMPORTED_MODULE_0___default().createHash(hashingAlgorithm).update(file).digest(encoding);\n}\nfunction getBase64URLEncoding(base64EncodedString) {\n    return base64EncodedString.replace(/\\+/g, \"-\").replace(/\\//g, \"_\").replace(/=+$/, \"\");\n}\nfunction convertToDictionaryItemsRepresentation(obj) {\n    return new Map(Object.entries(obj).map(([k, v])=>{\n        return [\n            k,\n            [\n                v,\n                new Map()\n            ]\n        ];\n    }));\n}\nfunction signRSASHA256(data, privateKey) {\n    const sign = crypto__WEBPACK_IMPORTED_MODULE_0___default().createSign(\"RSA-SHA256\");\n    sign.update(data, \"utf8\");\n    sign.end();\n    return sign.sign(privateKey, \"base64\");\n}\nasync function getPrivateKeyAsync() {\n    const privateKeyPath = process.env.PRIVATE_KEY_PATH;\n    if (!privateKeyPath) {\n        return null;\n    }\n    const pemBuffer = await fs_promises__WEBPACK_IMPORTED_MODULE_2___default().readFile(path__WEBPACK_IMPORTED_MODULE_4___default().resolve(privateKeyPath));\n    return pemBuffer.toString(\"utf8\");\n}\nasync function getLatestUpdateBundlePathForRuntimeVersionAsync(runtimeVersion) {\n    const updatesDirectoryForRuntimeVersion = `updates/${runtimeVersion}`;\n    if (!fs__WEBPACK_IMPORTED_MODULE_1___default().existsSync(updatesDirectoryForRuntimeVersion)) {\n        throw new Error(\"Unsupported runtime version\");\n    }\n    const filesInUpdatesDirectory = await fs_promises__WEBPACK_IMPORTED_MODULE_2___default().readdir(updatesDirectoryForRuntimeVersion);\n    const directoriesInUpdatesDirectory = (await Promise.all(filesInUpdatesDirectory.map(async (file)=>{\n        const fileStat = await fs_promises__WEBPACK_IMPORTED_MODULE_2___default().stat(path__WEBPACK_IMPORTED_MODULE_4___default().join(updatesDirectoryForRuntimeVersion, file));\n        return fileStat.isDirectory() ? file : null;\n    }))).filter(truthy).sort((a, b)=>parseInt(b, 10) - parseInt(a, 10)\n    );\n    return path__WEBPACK_IMPORTED_MODULE_4___default().join(updatesDirectoryForRuntimeVersion, directoriesInUpdatesDirectory[0]);\n}\nasync function getAssetMetadataAsync(arg) {\n    const assetFilePath = `${arg.updateBundlePath}/${arg.filePath}`;\n    const asset = await fs_promises__WEBPACK_IMPORTED_MODULE_2___default().readFile(path__WEBPACK_IMPORTED_MODULE_4___default().resolve(assetFilePath), null);\n    const assetHash = getBase64URLEncoding(createHash(asset, \"sha256\", \"base64\"));\n    const key = createHash(asset, \"md5\", \"hex\");\n    const keyExtensionSuffix = arg.isLaunchAsset ? \"bundle\" : arg.ext;\n    const contentType = arg.isLaunchAsset ? \"application/javascript\" : mime__WEBPACK_IMPORTED_MODULE_3___default().getType(arg.ext);\n    return {\n        hash: assetHash,\n        key,\n        fileExtension: `.${keyExtensionSuffix}`,\n        contentType,\n        url: `${process.env.HOSTNAME}/api/assets?asset=${assetFilePath}&runtimeVersion=${arg.runtimeVersion}&platform=${arg.platform}`\n    };\n}\nasync function createRollBackDirectiveAsync(updateBundlePath) {\n    try {\n        const rollbackFilePath = `${updateBundlePath}/rollback`;\n        const rollbackFileStat = await fs_promises__WEBPACK_IMPORTED_MODULE_2___default().stat(rollbackFilePath);\n        return {\n            type: \"rollBackToEmbedded\",\n            parameters: {\n                commitTime: new Date(rollbackFileStat.birthtime).toISOString()\n            }\n        };\n    } catch (error) {\n        throw new Error(`No rollback found. Error: ${error}`);\n    }\n}\nasync function createNoUpdateAvailableDirectiveAsync() {\n    return {\n        type: \"noUpdateAvailable\"\n    };\n}\nasync function getMetadataAsync({ updateBundlePath , runtimeVersion  }) {\n    try {\n        const metadataPath = `${updateBundlePath}/metadata.json`;\n        const updateMetadataBuffer = await fs_promises__WEBPACK_IMPORTED_MODULE_2___default().readFile(path__WEBPACK_IMPORTED_MODULE_4___default().resolve(metadataPath), null);\n        const metadataJson = JSON.parse(updateMetadataBuffer.toString(\"utf-8\"));\n        const metadataStat = await fs_promises__WEBPACK_IMPORTED_MODULE_2___default().stat(metadataPath);\n        return {\n            metadataJson,\n            createdAt: new Date(metadataStat.birthtime).toISOString(),\n            id: createHash(updateMetadataBuffer, \"sha256\", \"hex\")\n        };\n    } catch (error) {\n        throw new Error(`No update found with runtime version: ${runtimeVersion}. Error: ${error}`);\n    }\n}\n/**\n * This adds the `@expo/config`-exported config to `extra.expoConfig`, which is a common thing\n * done by implementors of the expo-updates specification since a lot of Expo modules use it.\n * It is not required by the specification, but is included here in the example client and server\n * for demonstration purposes. EAS Update does something conceptually very similar.\n */ async function getExpoConfigAsync({ updateBundlePath , runtimeVersion  }) {\n    try {\n        const expoConfigPath = `${updateBundlePath}/expoConfig.json`;\n        const expoConfigBuffer = await fs_promises__WEBPACK_IMPORTED_MODULE_2___default().readFile(path__WEBPACK_IMPORTED_MODULE_4___default().resolve(expoConfigPath), null);\n        const expoConfigJson = JSON.parse(expoConfigBuffer.toString(\"utf-8\"));\n        return expoConfigJson;\n    } catch (error) {\n        throw new Error(`No expo config json found with runtime version: ${runtimeVersion}. Error: ${error}`);\n    }\n}\nfunction convertSHA256HashToUUID(value) {\n    return `${value.slice(0, 8)}-${value.slice(8, 12)}-${value.slice(12, 16)}-${value.slice(16, 20)}-${value.slice(20, 32)}`;\n}\nfunction truthy(value) {\n    return !!value;\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,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Q0FBQ0MsS0FBSyxDQUFDLEVBQUUsRUFBRSxFQUFFLENBQUMsQ0FBQyxDQUFDLEVBQUVELEtBQUssQ0FBQ0MsS0FBSyxDQUNyRixFQUFFLEVBQ0YsRUFBRSxDQUNILENBQUMsQ0FBQyxFQUFFRCxLQUFLLENBQUNDLEtBQUssQ0FBQyxFQUFFLEVBQUUsRUFBRSxDQUFDLENBQUMsQ0FBQyxDQUFDO0NBQzVCO0FBRU0sU0FBU2pELE1BQU0sQ0FBU2dELEtBQWdDLEVBQW1CO0lBQ2hGLE9BQU8sQ0FBQyxDQUFDQSxLQUFLLENBQUM7Q0FDaEIiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9jdXN0b20tZXhwby11cGRhdGVzLXNlcnZlci8uL2NvbW1vbi9oZWxwZXJzLnRzP2E5NzMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGNyeXB0bywgeyBCaW5hcnlUb1RleHRFbmNvZGluZyB9IGZyb20gJ2NyeXB0byc7XG5pbXBvcnQgZnNTeW5jIGZyb20gJ2ZzJztcbmltcG9ydCBmcyBmcm9tICdmcy9wcm9taXNlcyc7XG5pbXBvcnQgbWltZSBmcm9tICdtaW1lJztcbmltcG9ydCBwYXRoIGZyb20gJ3BhdGgnO1xuaW1wb3J0IHsgRGljdGlvbmFyeSB9IGZyb20gJ3N0cnVjdHVyZWQtaGVhZGVycyc7XG5cbmV4cG9ydCBjbGFzcyBOb1VwZGF0ZUF2YWlsYWJsZUVycm9yIGV4dGVuZHMgRXJyb3Ige31cblxuZnVuY3Rpb24gY3JlYXRlSGFzaChmaWxlOiBCdWZmZXIsIGhhc2hpbmdBbGdvcml0aG06IHN0cmluZywgZW5jb2Rpbmc6IEJpbmFyeVRvVGV4dEVuY29kaW5nKSB7XG4gIHJldHVybiBjcnlwdG8uY3JlYXRlSGFzaChoYXNoaW5nQWxnb3JpdGhtKS51cGRhdGUoZmlsZSkuZGlnZXN0KGVuY29kaW5nKTtcbn1cblxuZnVuY3Rpb24gZ2V0QmFzZTY0VVJMRW5jb2RpbmcoYmFzZTY0RW5jb2RlZFN0cmluZzogc3RyaW5nKTogc3RyaW5nIHtcbiAgcmV0dXJuIGJhc2U2NEVuY29kZWRTdHJpbmcucmVwbGFjZSgvXFwrL2csICctJykucmVwbGFjZSgvXFwvL2csICdfJykucmVwbGFjZSgvPSskLywgJycpO1xufVxuXG5leHBvcnQgZnVuY3Rpb24gY29udmVydFRvRGljdGlvbmFyeUl0ZW1zUmVwcmVzZW50YXRpb24ob2JqOiB7IFtrZXk6IHN0cmluZ106IHN0cmluZyB9KTogRGljdGlvbmFyeSB7XG4gIHJldHVybiBuZXcgTWFwKFxuICAgIE9iamVjdC5lbnRyaWVzKG9iaikubWFwKChbaywgdl0pID0+IHtcbiAgICAgIHJldHVybiBbaywgW3YsIG5ldyBNYXAoKV1dO1xuICAgIH0pXG4gICk7XG59XG5cbmV4cG9ydCBmdW5jdGlvbiBzaWduUlNBU0hBMjU2KGRhdGE6IHN0cmluZywgcHJpdmF0ZUtleTogc3RyaW5nKSB7XG4gIGNvbnN0IHNpZ24gPSBjcnlwdG8uY3JlYXRlU2lnbignUlNBLVNIQTI1NicpO1xuICBzaWduLnVwZGF0ZShkYXRhLCAndXRmOCcpO1xuICBzaWduLmVuZCgpO1xuICByZXR1cm4gc2lnbi5zaWduKHByaXZhdGVLZXksICdiYXNlNjQnKTtcbn1cblxuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIGdldFByaXZhdGVLZXlBc3luYygpIHtcbiAgY29uc3QgcHJpdmF0ZUtleVBhdGggPSBwcm9jZXNzLmVudi5QUklWQVRFX0tFWV9QQVRIO1xuICBpZiAoIXByaXZhdGVLZXlQYXRoKSB7XG4gICAgcmV0dXJuIG51bGw7XG4gIH1cblxuICBjb25zdCBwZW1CdWZmZXIgPSBhd2FpdCBmcy5yZWFkRmlsZShwYXRoLnJlc29sdmUocHJpdmF0ZUtleVBhdGgpKTtcbiAgcmV0dXJuIHBlbUJ1ZmZlci50b1N0cmluZygndXRmOCcpO1xufVxuXG5leHBvcnQgYXN5bmMgZnVuY3Rpb24gZ2V0TGF0ZXN0VXBkYXRlQnVuZGxlUGF0aEZvclJ1bnRpbWVWZXJzaW9uQXN5bmMocnVudGltZVZlcnNpb246IHN0cmluZykge1xuICBjb25zdCB1cGRhdGVzRGlyZWN0b3J5Rm9yUnVudGltZVZlcnNpb24gPSBgdXBkYXRlcy8ke3J1bnRpbWVWZXJzaW9ufWA7XG4gIGlmICghZnNTeW5jLmV4aXN0c1N5bmModXBkYXRlc0RpcmVjdG9yeUZvclJ1bnRpbWVWZXJzaW9uKSkge1xuICAgIHRocm93IG5ldyBFcnJvcignVW5zdXBwb3J0ZWQgcnVudGltZSB2ZXJzaW9uJyk7XG4gIH1cblxuICBjb25zdCBmaWxlc0luVXBkYXRlc0RpcmVjdG9yeSA9IGF3YWl0IGZzLnJlYWRkaXIodXBkYXRlc0RpcmVjdG9yeUZvclJ1bnRpbWVWZXJzaW9uKTtcbiAgY29uc3QgZGlyZWN0b3JpZXNJblVwZGF0ZXNEaXJlY3RvcnkgPSAoXG4gICAgYXdhaXQgUHJvbWlzZS5hbGwoXG4gICAgICBmaWxlc0luVXBkYXRlc0RpcmVjdG9yeS5tYXAoYXN5bmMgKGZpbGUpID0+IHtcbiAgICAgICAgY29uc3QgZmlsZVN0YXQgPSBhd2FpdCBmcy5zdGF0KHBhdGguam9pbih1cGRhdGVzRGlyZWN0b3J5Rm9yUnVudGltZVZlcnNpb24sIGZpbGUpKTtcbiAgICAgICAgcmV0dXJuIGZpbGVTdGF0LmlzRGlyZWN0b3J5KCkgPyBmaWxlIDogbnVsbDtcbiAgICAgIH0pXG4gICAgKVxuICApXG4gICAgLmZpbHRlcih0cnV0aHkpXG4gICAgLnNvcnQoKGEsIGIpID0+IHBhcnNlSW50KGIsIDEwKSAtIHBhcnNlSW50KGEsIDEwKSk7XG4gIHJldHVybiBwYXRoLmpvaW4odXBkYXRlc0RpcmVjdG9yeUZvclJ1bnRpbWVWZXJzaW9uLCBkaXJlY3Rvcmllc0luVXBkYXRlc0RpcmVjdG9yeVswXSk7XG59XG5cbnR5cGUgR2V0QXNzZXRNZXRhZGF0YUFyZyA9XG4gIHwge1xuICAgICAgdXBkYXRlQnVuZGxlUGF0aDogc3RyaW5nO1xuICAgICAgZmlsZVBhdGg6IHN0cmluZztcbiAgICAgIGV4dDogbnVsbDtcbiAgICAgIGlzTGF1bmNoQXNzZXQ6IHRydWU7XG4gICAgICBydW50aW1lVmVyc2lvbjogc3RyaW5nO1xuICAgICAgcGxhdGZvcm06IHN0cmluZztcbiAgICB9XG4gIHwge1xuICAgICAgdXBkYXRlQnVuZGxlUGF0aDogc3RyaW5nO1xuICAgICAgZmlsZVBhdGg6IHN0cmluZztcbiAgICAgIGV4dDogc3RyaW5nO1xuICAgICAgaXNMYXVuY2hBc3NldDogZmFsc2U7XG4gICAgICBydW50aW1lVmVyc2lvbjogc3RyaW5nO1xuICAgICAgcGxhdGZvcm06IHN0cmluZztcbiAgICB9O1xuXG5leHBvcnQgYXN5bmMgZnVuY3Rpb24gZ2V0QXNzZXRNZXRhZGF0YUFzeW5jKGFyZzogR2V0QXNzZXRNZXRhZGF0YUFyZykge1xuICBjb25zdCBhc3NldEZpbGVQYXRoID0gYCR7YXJnLnVwZGF0ZUJ1bmRsZVBhdGh9LyR7YXJnLmZpbGVQYXRofWA7XG4gIGNvbnN0IGFzc2V0ID0gYXdhaXQgZnMucmVhZEZpbGUocGF0aC5yZXNvbHZlKGFzc2V0RmlsZVBhdGgpLCBudWxsKTtcbiAgY29uc3QgYXNzZXRIYXNoID0gZ2V0QmFzZTY0VVJMRW5jb2RpbmcoY3JlYXRlSGFzaChhc3NldCwgJ3NoYTI1NicsICdiYXNlNjQnKSk7XG4gIGNvbnN0IGtleSA9IGNyZWF0ZUhhc2goYXNzZXQsICdtZDUnLCAnaGV4Jyk7XG4gIGNvbnN0IGtleUV4dGVuc2lvblN1ZmZpeCA9IGFyZy5pc0xhdW5jaEFzc2V0ID8gJ2J1bmRsZScgOiBhcmcuZXh0O1xuICBjb25zdCBjb250ZW50VHlwZSA9IGFyZy5pc0xhdW5jaEFzc2V0ID8gJ2FwcGxpY2F0aW9uL2phdmFzY3JpcHQnIDogbWltZS5nZXRUeXBlKGFyZy5leHQpO1xuXG4gIHJldHVybiB7XG4gICAgaGFzaDogYXNzZXRIYXNoLFxuICAgIGtleSxcbiAgICBmaWxlRXh0ZW5zaW9uOiBgLiR7a2V5RXh0ZW5zaW9uU3VmZml4fWAsXG4gICAgY29udGVudFR5cGUsXG4gICAgdXJsOiBgJHtwcm9jZXNzLmVudi5IT1NUTkFNRX0vYXBpL2Fzc2V0cz9hc3NldD0ke2Fzc2V0RmlsZVBhdGh9JnJ1bnRpbWVWZXJzaW9uPSR7YXJnLnJ1bnRpbWVWZXJzaW9ufSZwbGF0Zm9ybT0ke2FyZy5wbGF0Zm9ybX1gLFxuICB9O1xufVxuXG5leHBvcnQgYXN5bmMgZnVuY3Rpb24gY3JlYXRlUm9sbEJhY2tEaXJlY3RpdmVBc3luYyh1cGRhdGVCdW5kbGVQYXRoOiBzdHJpbmcpIHtcbiAgdHJ5IHtcbiAgICBjb25zdCByb2xsYmFja0ZpbGVQYXRoID0gYCR7dXBkYXRlQnVuZGxlUGF0aH0vcm9sbGJhY2tgO1xuICAgIGNvbnN0IHJvbGxiYWNrRmlsZVN0YXQgPSBhd2FpdCBmcy5zdGF0KHJvbGxiYWNrRmlsZVBhdGgpO1xuICAgIHJldHVybiB7XG4gICAgICB0eXBlOiAncm9sbEJhY2tUb0VtYmVkZGVkJyxcbiAgICAgIHBhcmFtZXRlcnM6IHtcbiAgICAgICAgY29tbWl0VGltZTogbmV3IERhdGUocm9sbGJhY2tGaWxlU3RhdC5iaXJ0aHRpbWUpLnRvSVNPU3RyaW5nKCksXG4gICAgICB9LFxuICAgIH07XG4gIH0gY2F0Y2ggKGVycm9yKSB7XG4gICAgdGhyb3cgbmV3IEVycm9yKGBObyByb2xsYmFjayBmb3VuZC4gRXJyb3I6ICR7ZXJyb3J9YCk7XG4gIH1cbn1cblxuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIGNyZWF0ZU5vVXBkYXRlQXZhaWxhYmxlRGlyZWN0aXZlQXN5bmMoKSB7XG4gIHJldHVybiB7XG4gICAgdHlwZTogJ25vVXBkYXRlQXZhaWxhYmxlJyxcbiAgfTtcbn1cblxuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIGdldE1ldGFkYXRhQXN5bmMoe1xuICB1cGRhdGVCdW5kbGVQYXRoLFxuICBydW50aW1lVmVyc2lvbixcbn06IHtcbiAgdXBkYXRlQnVuZGxlUGF0aDogc3RyaW5nO1xuICBydW50aW1lVmVyc2lvbjogc3RyaW5nO1xufSkge1xuICB0cnkge1xuICAgIGNvbnN0IG1ldGFkYXRhUGF0aCA9IGAke3VwZGF0ZUJ1bmRsZVBhdGh9L21ldGFkYXRhLmpzb25gO1xuICAgIGNvbnN0IHVwZGF0ZU1ldGFkYXRhQnVmZmVyID0gYXdhaXQgZnMucmVhZEZpbGUocGF0aC5yZXNvbHZlKG1ldGFkYXRhUGF0aCksIG51bGwpO1xuICAgIGNvbnN0IG1ldGFkYXRhSnNvbiA9IEpTT04ucGFyc2UodXBkYXRlTWV0YWRhdGFCdWZmZXIudG9TdHJpbmcoJ3V0Zi04JykpO1xuICAgIGNvbnN0IG1ldGFkYXRhU3RhdCA9IGF3YWl0IGZzLnN0YXQobWV0YWRhdGFQYXRoKTtcblxuICAgIHJldHVybiB7XG4gICAgICBtZXRhZGF0YUpzb24sXG4gICAgICBjcmVhdGVkQXQ6IG5ldyBEYXRlKG1ldGFkYXRhU3RhdC5iaXJ0aHRpbWUpLnRvSVNPU3RyaW5nKCksXG4gICAgICBpZDogY3JlYXRlSGFzaCh1cGRhdGVNZXRhZGF0YUJ1ZmZlciwgJ3NoYTI1NicsICdoZXgnKSxcbiAgICB9O1xuICB9IGNhdGNoIChlcnJvcikge1xuICAgIHRocm93IG5ldyBFcnJvcihgTm8gdXBkYXRlIGZvdW5kIHdpdGggcnVudGltZSB2ZXJzaW9uOiAke3J1bnRpbWVWZXJzaW9ufS4gRXJyb3I6ICR7ZXJyb3J9YCk7XG4gIH1cbn1cblxuLyoqXG4gKiBUaGlzIGFkZHMgdGhlIGBAZXhwby9jb25maWdgLWV4cG9ydGVkIGNvbmZpZyB0byBgZXh0cmEuZXhwb0NvbmZpZ2AsIHdoaWNoIGlzIGEgY29tbW9uIHRoaW5nXG4gKiBkb25lIGJ5IGltcGxlbWVudG9ycyBvZiB0aGUgZXhwby11cGRhdGVzIHNwZWNpZmljYXRpb24gc2luY2UgYSBsb3Qgb2YgRXhwbyBtb2R1bGVzIHVzZSBpdC5cbiAqIEl0IGlzIG5vdCByZXF1aXJlZCBieSB0aGUgc3BlY2lmaWNhdGlvbiwgYnV0IGlzIGluY2x1ZGVkIGhlcmUgaW4gdGhlIGV4YW1wbGUgY2xpZW50IGFuZCBzZXJ2ZXJcbiAqIGZvciBkZW1vbnN0cmF0aW9uIHB1cnBvc2VzLiBFQVMgVXBkYXRlIGRvZXMgc29tZXRoaW5nIGNvbmNlcHR1YWxseSB2ZXJ5IHNpbWlsYXIuXG4gKi9cbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBnZXRFeHBvQ29uZmlnQXN5bmMoe1xuICB1cGRhdGVCdW5kbGVQYXRoLFxuICBydW50aW1lVmVyc2lvbixcbn06IHtcbiAgdXBkYXRlQnVuZGxlUGF0aDogc3RyaW5nO1xuICBydW50aW1lVmVyc2lvbjogc3RyaW5nO1xufSk6IFByb21pc2U8YW55PiB7XG4gIHRyeSB7XG4gICAgY29uc3QgZXhwb0NvbmZpZ1BhdGggPSBgJHt1cGRhdGVCdW5kbGVQYXRofS9leHBvQ29uZmlnLmpzb25gO1xuICAgIGNvbnN0IGV4cG9Db25maWdCdWZmZXIgPSBhd2FpdCBmcy5yZWFkRmlsZShwYXRoLnJlc29sdmUoZXhwb0NvbmZpZ1BhdGgpLCBudWxsKTtcbiAgICBjb25zdCBleHBvQ29uZmlnSnNvbiA9IEpTT04ucGFyc2UoZXhwb0NvbmZpZ0J1ZmZlci50b1N0cmluZygndXRmLTgnKSk7XG4gICAgcmV0dXJuIGV4cG9Db25maWdKc29uO1xuICB9IGNhdGNoIChlcnJvcikge1xuICAgIHRocm93IG5ldyBFcnJvcihcbiAgICAgIGBObyBleHBvIGNvbmZpZyBqc29uIGZvdW5kIHdpdGggcnVudGltZSB2ZXJzaW9uOiAke3J1bnRpbWVWZXJzaW9ufS4gRXJyb3I6ICR7ZXJyb3J9YFxuICAgICk7XG4gIH1cbn1cblxuZXhwb3J0IGZ1bmN0aW9uIGNvbnZlcnRTSEEyNTZIYXNoVG9VVUlEKHZhbHVlOiBzdHJpbmcpIHtcbiAgcmV0dXJuIGAke3ZhbHVlLnNsaWNlKDAsIDgpfS0ke3ZhbHVlLnNsaWNlKDgsIDEyKX0tJHt2YWx1ZS5zbGljZSgxMiwgMTYpfS0ke3ZhbHVlLnNsaWNlKFxuICAgIDE2LFxuICAgIDIwXG4gICl9LSR7dmFsdWUuc2xpY2UoMjAsIDMyKX1gO1xufVxuXG5leHBvcnQgZnVuY3Rpb24gdHJ1dGh5PFRWYWx1ZT4odmFsdWU6IFRWYWx1ZSB8IG51bGwgfCB1bmRlZmluZWQpOiB2YWx1ZSBpcyBUVmFsdWUge1xuICByZXR1cm4gISF2YWx1ZTtcbn1cbiJdLCJuYW1lcyI6WyJjcnlwdG8iLCJmc1N5bmMiLCJmcyIsIm1pbWUiLCJwYXRoIiwiTm9VcGRhdGVBdmFpbGFibGVFcnJvciIsIkVycm9yIiwiY3JlYXRlSGFzaCIsImZpbGUiLCJoYXNoaW5nQWxnb3JpdGhtIiwiZW5jb2RpbmciLCJ1cGRhdGUiLCJkaWdlc3QiLCJnZXRCYXNlNjRVUkxFbmNvZGluZyIsImJhc2U2NEVuY29kZWRTdHJpbmciLCJyZXBsYWNlIiwiY29udmVydFRvRGljdGlvbmFyeUl0ZW1zUmVwcmVzZW50YXRpb24iLCJvYmoiLCJNYXAiLCJPYmplY3QiLCJlbnRyaWVzIiwibWFwIiwiayIsInYiLCJzaWduUlNBU0hBMjU2IiwiZGF0YSIsInByaXZhdGVLZXkiLCJzaWduIiwiY3JlYXRlU2lnbiIsImVuZCIsImdldFByaXZhdGVLZXlBc3luYyIsInByaXZhdGVLZXlQYXRoIiwicHJvY2VzcyIsImVudiIsIlBSSVZBVEVfS0VZX1BBVEgiLCJwZW1CdWZmZXIiLCJyZWFkRmlsZSIsInJlc29sdmUiLCJ0b1N0cmluZyIsImdldExhdGVzdFVwZGF0ZUJ1bmRsZVBhdGhGb3JSdW50aW1lVmVyc2lvbkFzeW5jIiwicnVudGltZVZlcnNpb24iLCJ1cGRhdGVzRGlyZWN0b3J5Rm9yUnVudGltZVZlcnNpb24iLCJleGlzdHNTeW5jIiwiZmlsZXNJblVwZGF0ZXNEaXJlY3RvcnkiLCJyZWFkZGlyIiwiZGlyZWN0b3JpZXNJblVwZGF0ZXNEaXJlY3RvcnkiLCJQcm9taXNlIiwiYWxsIiwiZmlsZVN0YXQiLCJzdGF0Iiwiam9pbiIsImlzRGlyZWN0b3J5IiwiZmlsdGVyIiwidHJ1dGh5Iiwic29ydCIsImEiLCJiIiwicGFyc2VJbnQiLCJnZXRBc3NldE1ldGFkYXRhQXN5bmMiLCJhcmciLCJhc3NldEZpbGVQYXRoIiwidXBkYXRlQnVuZGxlUGF0aCIsImZpbGVQYXRoIiwiYXNzZXQiLCJhc3NldEhhc2giLCJrZXkiLCJrZXlFeHRlbnNpb25TdWZmaXgiLCJpc0xhdW5jaEFzc2V0IiwiZXh0IiwiY29udGVudFR5cGUiLCJnZXRUeXBlIiwiaGFzaCIsImZpbGVFeHRlbnNpb24iLCJ1cmwiLCJIT1NUTkFNRSIsInBsYXRmb3JtIiwiY3JlYXRlUm9sbEJhY2tEaXJlY3RpdmVBc3luYyIsInJvbGxiYWNrRmlsZVBhdGgiLCJyb2xsYmFja0ZpbGVTdGF0IiwidHlwZSIsInBhcmFtZXRlcnMiLCJjb21taXRUaW1lIiwiRGF0ZSIsImJpcnRodGltZSIsInRvSVNPU3RyaW5nIiwiZXJyb3IiLCJjcmVhdGVOb1VwZGF0ZUF2YWlsYWJsZURpcmVjdGl2ZUFzeW5jIiwiZ2V0TWV0YWRhdGFBc3luYyIsIm1ldGFkYXRhUGF0aCIsInVwZGF0ZU1ldGFkYXRhQnVmZmVyIiwibWV0YWRhdGFKc29uIiwiSlNPTiIsInBhcnNlIiwibWV0YWRhdGFTdGF0IiwiY3JlYXRlZEF0IiwiaWQiLCJnZXRFeHBvQ29uZmlnQXN5bmMiLCJleHBvQ29uZmlnUGF0aCIsImV4cG9Db25maWdCdWZmZXIiLCJleHBvQ29uZmlnSnNvbiIsImNvbnZlcnRTSEEyNTZIYXNoVG9VVUlEIiwidmFsdWUiLCJzbGljZSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(api)/./common/helpers.ts\n");
 
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "default": () => (/* binding */ manifestEndpoint)
-});
+/***/ }),
 
-;// CONCATENATED MODULE: external "form-data"
-const external_form_data_namespaceObject = require("form-data");
-var external_form_data_default = /*#__PURE__*/__webpack_require__.n(external_form_data_namespaceObject);
-// EXTERNAL MODULE: external "fs/promises"
-var promises_ = __webpack_require__(292);
-var promises_default = /*#__PURE__*/__webpack_require__.n(promises_);
-;// CONCATENATED MODULE: external "structured-headers"
-const external_structured_headers_namespaceObject = require("structured-headers");
-// EXTERNAL MODULE: ./common/helpers.ts
-var helpers = __webpack_require__(72);
-;// CONCATENATED MODULE: ./pages/api/manifest.ts
+/***/ "(api)/./pages/api/manifest.ts":
+/*!*******************************!*\
+  !*** ./pages/api/manifest.ts ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-
-
-
-async function manifestEndpoint(req, res) {
-    if (req.method !== "GET") {
-        res.statusCode = 405;
-        res.json({
-            error: "Expected GET."
-        });
-        return;
-    }
-    const protocolVersionMaybeArray = req.headers["expo-protocol-version"];
-    if (protocolVersionMaybeArray && Array.isArray(protocolVersionMaybeArray)) {
-        res.statusCode = 400;
-        res.json({
-            error: "Unsupported protocol version. Expected either 0 or 1."
-        });
-        return;
-    }
-    const protocolVersion = parseInt(protocolVersionMaybeArray !== null && protocolVersionMaybeArray !== void 0 ? protocolVersionMaybeArray : "0", 10);
-    var ref;
-    const platform = (ref = req.headers["expo-platform"]) !== null && ref !== void 0 ? ref : req.query["platform"];
-    if (platform !== "ios" && platform !== "android") {
-        res.statusCode = 400;
-        res.json({
-            error: "Unsupported platform. Expected either ios or android."
-        });
-        return;
-    }
-    var ref1;
-    const runtimeVersion = (ref1 = req.headers["expo-runtime-version"]) !== null && ref1 !== void 0 ? ref1 : req.query["runtime-version"];
-    if (!runtimeVersion || typeof runtimeVersion !== "string") {
-        res.statusCode = 400;
-        res.json({
-            error: "No runtimeVersion provided."
-        });
-        return;
-    }
-    let updateBundlePath;
-    try {
-        updateBundlePath = await (0,helpers/* getLatestUpdateBundlePathForRuntimeVersionAsync */.BE)(runtimeVersion);
-    } catch (error) {
-        res.statusCode = 404;
-        res.json({
-            error: error.message
-        });
-        return;
-    }
-    const updateType = await getTypeOfUpdateAsync(updateBundlePath);
-    try {
-        try {
-            if (updateType === UpdateType.NORMAL_UPDATE) {
-                await putUpdateInResponseAsync(req, res, updateBundlePath, runtimeVersion, platform, protocolVersion);
-            } else if (updateType === UpdateType.ROLLBACK) {
-                await putRollBackInResponseAsync(req, res, updateBundlePath, protocolVersion);
-            }
-        } catch (maybeNoUpdateAvailableError) {
-            if (maybeNoUpdateAvailableError instanceof helpers/* NoUpdateAvailableError */.fy) {
-                await putNoUpdateAvailableInResponseAsync(req, res, protocolVersion);
-                return;
-            }
-            throw maybeNoUpdateAvailableError;
-        }
-    } catch (error1) {
-        console.error(error1);
-        res.statusCode = 404;
-        res.json({
-            error: error1
-        });
-    }
-};
-var UpdateType;
-(function(UpdateType) {
-    UpdateType[UpdateType["NORMAL_UPDATE"] = 0] = "NORMAL_UPDATE";
-    UpdateType[UpdateType["ROLLBACK"] = 1] = "ROLLBACK";
-})(UpdateType || (UpdateType = {}));
-async function getTypeOfUpdateAsync(updateBundlePath) {
-    const directoryContents = await promises_default().readdir(updateBundlePath);
-    return directoryContents.includes("rollback") ? UpdateType.ROLLBACK : UpdateType.NORMAL_UPDATE;
-}
-async function putUpdateInResponseAsync(req, res, updateBundlePath, runtimeVersion, platform, protocolVersion) {
-    const currentUpdateId = req.headers["expo-current-update-id"];
-    const { metadataJson , createdAt , id  } = await (0,helpers/* getMetadataAsync */.Se)({
-        updateBundlePath,
-        runtimeVersion
-    });
-    // NoUpdateAvailable directive only supported on protocol version 1
-    // for protocol version 0, serve most recent update as normal
-    if (currentUpdateId === id && protocolVersion === 1) {
-        throw new helpers/* NoUpdateAvailableError */.fy();
-    }
-    const expoConfig = await (0,helpers/* getExpoConfigAsync */.bg)({
-        updateBundlePath,
-        runtimeVersion
-    });
-    const platformSpecificMetadata = metadataJson.fileMetadata[platform];
-    const manifest = {
-        id: (0,helpers/* convertSHA256HashToUUID */.Uc)(id),
-        createdAt,
-        runtimeVersion,
-        assets: await Promise.all(platformSpecificMetadata.assets.map((asset)=>(0,helpers/* getAssetMetadataAsync */.fE)({
-                updateBundlePath,
-                filePath: asset.path,
-                ext: asset.ext,
-                runtimeVersion,
-                platform,
-                isLaunchAsset: false
-            })
-        )),
-        launchAsset: await (0,helpers/* getAssetMetadataAsync */.fE)({
-            updateBundlePath,
-            filePath: platformSpecificMetadata.bundle,
-            isLaunchAsset: true,
-            runtimeVersion,
-            platform,
-            ext: null
-        }),
-        metadata: {},
-        extra: {
-            expoClient: expoConfig
-        }
-    };
-    let signature = null;
-    const expectSignatureHeader = req.headers["expo-expect-signature"];
-    if (expectSignatureHeader) {
-        const privateKey = await (0,helpers/* getPrivateKeyAsync */.tw)();
-        if (!privateKey) {
-            res.statusCode = 400;
-            res.json({
-                error: "Code signing requested but no key supplied when starting server."
-            });
-            return;
-        }
-        const manifestString = JSON.stringify(manifest);
-        const hashSignature = (0,helpers/* signRSASHA256 */.sk)(manifestString, privateKey);
-        const dictionary = (0,helpers/* convertToDictionaryItemsRepresentation */.Kg)({
-            sig: hashSignature,
-            keyid: "main"
-        });
-        signature = (0,external_structured_headers_namespaceObject.serializeDictionary)(dictionary);
-    }
-    const assetRequestHeaders = {};
-    [
-        ...manifest.assets,
-        manifest.launchAsset
-    ].forEach((asset)=>{
-        assetRequestHeaders[asset.key] = {
-            "test-header": "test-header-value"
-        };
-    });
-    const form = new (external_form_data_default())();
-    form.append("manifest", JSON.stringify(manifest), {
-        contentType: "application/json",
-        header: {
-            "content-type": "application/json; charset=utf-8",
-            ...signature ? {
-                "expo-signature": signature
-            } : {}
-        }
-    });
-    form.append("extensions", JSON.stringify({
-        assetRequestHeaders
-    }), {
-        contentType: "application/json"
-    });
-    res.statusCode = 200;
-    res.setHeader("expo-protocol-version", protocolVersion);
-    res.setHeader("expo-sfv-version", 0);
-    res.setHeader("cache-control", "private, max-age=0");
-    res.setHeader("content-type", `multipart/mixed; boundary=${form.getBoundary()}`);
-    res.write(form.getBuffer());
-    res.end();
-}
-async function putRollBackInResponseAsync(req, res, updateBundlePath, protocolVersion) {
-    if (protocolVersion === 0) {
-        throw new Error("Rollbacks not supported on protocol version 0");
-    }
-    const embeddedUpdateId = req.headers["expo-embedded-update-id"];
-    if (!embeddedUpdateId || typeof embeddedUpdateId !== "string") {
-        throw new Error("Invalid Expo-Embedded-Update-ID request header specified.");
-    }
-    const currentUpdateId = req.headers["expo-current-update-id"];
-    if (currentUpdateId === embeddedUpdateId) {
-        throw new helpers/* NoUpdateAvailableError */.fy();
-    }
-    const directive = await (0,helpers/* createRollBackDirectiveAsync */.AE)(updateBundlePath);
-    let signature = null;
-    const expectSignatureHeader = req.headers["expo-expect-signature"];
-    if (expectSignatureHeader) {
-        const privateKey = await (0,helpers/* getPrivateKeyAsync */.tw)();
-        if (!privateKey) {
-            res.statusCode = 400;
-            res.json({
-                error: "Code signing requested but no key supplied when starting server."
-            });
-            return;
-        }
-        const directiveString = JSON.stringify(directive);
-        const hashSignature = (0,helpers/* signRSASHA256 */.sk)(directiveString, privateKey);
-        const dictionary = (0,helpers/* convertToDictionaryItemsRepresentation */.Kg)({
-            sig: hashSignature,
-            keyid: "main"
-        });
-        signature = (0,external_structured_headers_namespaceObject.serializeDictionary)(dictionary);
-    }
-    const form = new (external_form_data_default())();
-    form.append("directive", JSON.stringify(directive), {
-        contentType: "application/json",
-        header: {
-            "content-type": "application/json; charset=utf-8",
-            ...signature ? {
-                "expo-signature": signature
-            } : {}
-        }
-    });
-    res.statusCode = 200;
-    res.setHeader("expo-protocol-version", 1);
-    res.setHeader("expo-sfv-version", 0);
-    res.setHeader("cache-control", "private, max-age=0");
-    res.setHeader("content-type", `multipart/mixed; boundary=${form.getBoundary()}`);
-    res.write(form.getBuffer());
-    res.end();
-}
-async function putNoUpdateAvailableInResponseAsync(req, res, protocolVersion) {
-    if (protocolVersion === 0) {
-        throw new Error("NoUpdateAvailable directive not available in protocol version 0");
-    }
-    const directive = await (0,helpers/* createNoUpdateAvailableDirectiveAsync */.pA)();
-    let signature = null;
-    const expectSignatureHeader = req.headers["expo-expect-signature"];
-    if (expectSignatureHeader) {
-        const privateKey = await (0,helpers/* getPrivateKeyAsync */.tw)();
-        if (!privateKey) {
-            res.statusCode = 400;
-            res.json({
-                error: "Code signing requested but no key supplied when starting server."
-            });
-            return;
-        }
-        const directiveString = JSON.stringify(directive);
-        const hashSignature = (0,helpers/* signRSASHA256 */.sk)(directiveString, privateKey);
-        const dictionary = (0,helpers/* convertToDictionaryItemsRepresentation */.Kg)({
-            sig: hashSignature,
-            keyid: "main"
-        });
-        signature = (0,external_structured_headers_namespaceObject.serializeDictionary)(dictionary);
-    }
-    const form = new (external_form_data_default())();
-    form.append("directive", JSON.stringify(directive), {
-        contentType: "application/json",
-        header: {
-            "content-type": "application/json; charset=utf-8",
-            ...signature ? {
-                "expo-signature": signature
-            } : {}
-        }
-    });
-    res.statusCode = 200;
-    res.setHeader("expo-protocol-version", 1);
-    res.setHeader("expo-sfv-version", 0);
-    res.setHeader("cache-control", "private, max-age=0");
-    res.setHeader("content-type", `multipart/mixed; boundary=${form.getBoundary()}`);
-    res.write(form.getBuffer());
-    res.end();
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ manifestEndpoint)\n/* harmony export */ });\n/* harmony import */ var form_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! form-data */ \"form-data\");\n/* harmony import */ var form_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(form_data__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var fs_promises__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fs/promises */ \"fs/promises\");\n/* harmony import */ var fs_promises__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fs_promises__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var structured_headers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! structured-headers */ \"structured-headers\");\n/* harmony import */ var structured_headers__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(structured_headers__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _common_helpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../common/helpers */ \"(api)/./common/helpers.ts\");\n\n\n\n\nasync function manifestEndpoint(req, res) {\n    if (req.method !== \"GET\") {\n        res.statusCode = 405;\n        res.json({\n            error: \"Expected GET.\"\n        });\n        return;\n    }\n    const protocolVersionMaybeArray = req.headers[\"expo-protocol-version\"];\n    if (protocolVersionMaybeArray && Array.isArray(protocolVersionMaybeArray)) {\n        res.statusCode = 400;\n        res.json({\n            error: \"Unsupported protocol version. Expected either 0 or 1.\"\n        });\n        return;\n    }\n    const protocolVersion = parseInt(protocolVersionMaybeArray !== null && protocolVersionMaybeArray !== void 0 ? protocolVersionMaybeArray : \"0\", 10);\n    var ref;\n    const platform = (ref = req.headers[\"expo-platform\"]) !== null && ref !== void 0 ? ref : req.query[\"platform\"];\n    if (platform !== \"ios\" && platform !== \"android\") {\n        res.statusCode = 400;\n        res.json({\n            error: \"Unsupported platform. Expected either ios or android.\"\n        });\n        return;\n    }\n    var ref1;\n    const runtimeVersion = (ref1 = req.headers[\"expo-runtime-version\"]) !== null && ref1 !== void 0 ? ref1 : req.query[\"runtime-version\"];\n    if (!runtimeVersion || typeof runtimeVersion !== \"string\") {\n        res.statusCode = 400;\n        res.json({\n            error: \"No runtimeVersion provided.\"\n        });\n        return;\n    }\n    let updateBundlePath;\n    try {\n        updateBundlePath = await (0,_common_helpers__WEBPACK_IMPORTED_MODULE_3__.getLatestUpdateBundlePathForRuntimeVersionAsync)(runtimeVersion);\n    } catch (error) {\n        res.statusCode = 404;\n        res.json({\n            error: error.message\n        });\n        return;\n    }\n    const updateType = await getTypeOfUpdateAsync(updateBundlePath);\n    try {\n        try {\n            if (updateType === UpdateType.NORMAL_UPDATE) {\n                await putUpdateInResponseAsync(req, res, updateBundlePath, runtimeVersion, platform, protocolVersion);\n            } else if (updateType === UpdateType.ROLLBACK) {\n                await putRollBackInResponseAsync(req, res, updateBundlePath, protocolVersion);\n            }\n        } catch (maybeNoUpdateAvailableError) {\n            if (maybeNoUpdateAvailableError instanceof _common_helpers__WEBPACK_IMPORTED_MODULE_3__.NoUpdateAvailableError) {\n                await putNoUpdateAvailableInResponseAsync(req, res, protocolVersion);\n                return;\n            }\n            throw maybeNoUpdateAvailableError;\n        }\n    } catch (error1) {\n        console.error(error1);\n        res.statusCode = 404;\n        res.json({\n            error: error1\n        });\n    }\n};\nvar UpdateType;\n(function(UpdateType) {\n    UpdateType[UpdateType[\"NORMAL_UPDATE\"] = 0] = \"NORMAL_UPDATE\";\n    UpdateType[UpdateType[\"ROLLBACK\"] = 1] = \"ROLLBACK\";\n})(UpdateType || (UpdateType = {}));\nasync function getTypeOfUpdateAsync(updateBundlePath) {\n    const directoryContents = await fs_promises__WEBPACK_IMPORTED_MODULE_1___default().readdir(updateBundlePath);\n    return directoryContents.includes(\"rollback\") ? UpdateType.ROLLBACK : UpdateType.NORMAL_UPDATE;\n}\nasync function putUpdateInResponseAsync(req, res, updateBundlePath, runtimeVersion, platform, protocolVersion) {\n    const currentUpdateId = req.headers[\"expo-current-update-id\"];\n    const { metadataJson , createdAt , id  } = await (0,_common_helpers__WEBPACK_IMPORTED_MODULE_3__.getMetadataAsync)({\n        updateBundlePath,\n        runtimeVersion\n    });\n    // NoUpdateAvailable directive only supported on protocol version 1\n    // for protocol version 0, serve most recent update as normal\n    if (currentUpdateId === id && protocolVersion === 1) {\n        throw new _common_helpers__WEBPACK_IMPORTED_MODULE_3__.NoUpdateAvailableError();\n    }\n    const expoConfig = await (0,_common_helpers__WEBPACK_IMPORTED_MODULE_3__.getExpoConfigAsync)({\n        updateBundlePath,\n        runtimeVersion\n    });\n    const platformSpecificMetadata = metadataJson.fileMetadata[platform];\n    const manifest = {\n        id: (0,_common_helpers__WEBPACK_IMPORTED_MODULE_3__.convertSHA256HashToUUID)(id),\n        createdAt,\n        runtimeVersion,\n        assets: await Promise.all(platformSpecificMetadata.assets.map((asset)=>(0,_common_helpers__WEBPACK_IMPORTED_MODULE_3__.getAssetMetadataAsync)({\n                updateBundlePath,\n                filePath: asset.path,\n                ext: asset.ext,\n                runtimeVersion,\n                platform,\n                isLaunchAsset: false\n            })\n        )),\n        launchAsset: await (0,_common_helpers__WEBPACK_IMPORTED_MODULE_3__.getAssetMetadataAsync)({\n            updateBundlePath,\n            filePath: platformSpecificMetadata.bundle,\n            isLaunchAsset: true,\n            runtimeVersion,\n            platform,\n            ext: null\n        }),\n        metadata: {},\n        extra: {\n            expoClient: expoConfig\n        }\n    };\n    let signature = null;\n    const expectSignatureHeader = req.headers[\"expo-expect-signature\"];\n    if (expectSignatureHeader) {\n        const privateKey = await (0,_common_helpers__WEBPACK_IMPORTED_MODULE_3__.getPrivateKeyAsync)();\n        if (!privateKey) {\n            res.statusCode = 400;\n            res.json({\n                error: \"Code signing requested but no key supplied when starting server.\"\n            });\n            return;\n        }\n        const manifestString = JSON.stringify(manifest);\n        const hashSignature = (0,_common_helpers__WEBPACK_IMPORTED_MODULE_3__.signRSASHA256)(manifestString, privateKey);\n        const dictionary = (0,_common_helpers__WEBPACK_IMPORTED_MODULE_3__.convertToDictionaryItemsRepresentation)({\n            sig: hashSignature,\n            keyid: \"main\"\n        });\n        signature = (0,structured_headers__WEBPACK_IMPORTED_MODULE_2__.serializeDictionary)(dictionary);\n    }\n    const assetRequestHeaders = {};\n    [\n        ...manifest.assets,\n        manifest.launchAsset\n    ].forEach((asset)=>{\n        assetRequestHeaders[asset.key] = {\n            \"test-header\": \"test-header-value\"\n        };\n    });\n    const form = new (form_data__WEBPACK_IMPORTED_MODULE_0___default())();\n    form.append(\"manifest\", JSON.stringify(manifest), {\n        contentType: \"application/json\",\n        header: {\n            \"content-type\": \"application/json; charset=utf-8\",\n            ...signature ? {\n                \"expo-signature\": signature\n            } : {}\n        }\n    });\n    form.append(\"extensions\", JSON.stringify({\n        assetRequestHeaders\n    }), {\n        contentType: \"application/json\"\n    });\n    res.statusCode = 200;\n    res.setHeader(\"expo-protocol-version\", protocolVersion);\n    res.setHeader(\"expo-sfv-version\", 0);\n    res.setHeader(\"cache-control\", \"private, max-age=0\");\n    res.setHeader(\"content-type\", `multipart/mixed; boundary=${form.getBoundary()}`);\n    res.write(form.getBuffer());\n    res.end();\n}\nasync function putRollBackInResponseAsync(req, res, updateBundlePath, protocolVersion) {\n    if (protocolVersion === 0) {\n        throw new Error(\"Rollbacks not supported on protocol version 0\");\n    }\n    const embeddedUpdateId = req.headers[\"expo-embedded-update-id\"];\n    if (!embeddedUpdateId || typeof embeddedUpdateId !== \"string\") {\n        throw new Error(\"Invalid Expo-Embedded-Update-ID request header specified.\");\n    }\n    const currentUpdateId = req.headers[\"expo-current-update-id\"];\n    if (currentUpdateId === embeddedUpdateId) {\n        throw new _common_helpers__WEBPACK_IMPORTED_MODULE_3__.NoUpdateAvailableError();\n    }\n    const directive = await (0,_common_helpers__WEBPACK_IMPORTED_MODULE_3__.createRollBackDirectiveAsync)(updateBundlePath);\n    let signature = null;\n    const expectSignatureHeader = req.headers[\"expo-expect-signature\"];\n    if (expectSignatureHeader) {\n        const privateKey = await (0,_common_helpers__WEBPACK_IMPORTED_MODULE_3__.getPrivateKeyAsync)();\n        if (!privateKey) {\n            res.statusCode = 400;\n            res.json({\n                error: \"Code signing requested but no key supplied when starting server.\"\n            });\n            return;\n        }\n        const directiveString = JSON.stringify(directive);\n        const hashSignature = (0,_common_helpers__WEBPACK_IMPORTED_MODULE_3__.signRSASHA256)(directiveString, privateKey);\n        const dictionary = (0,_common_helpers__WEBPACK_IMPORTED_MODULE_3__.convertToDictionaryItemsRepresentation)({\n            sig: hashSignature,\n            keyid: \"main\"\n        });\n        signature = (0,structured_headers__WEBPACK_IMPORTED_MODULE_2__.serializeDictionary)(dictionary);\n    }\n    const form = new (form_data__WEBPACK_IMPORTED_MODULE_0___default())();\n    form.append(\"directive\", JSON.stringify(directive), {\n        contentType: \"application/json\",\n        header: {\n            \"content-type\": \"application/json; charset=utf-8\",\n            ...signature ? {\n                \"expo-signature\": signature\n            } : {}\n        }\n    });\n    res.statusCode = 200;\n    res.setHeader(\"expo-protocol-version\", 1);\n    res.setHeader(\"expo-sfv-version\", 0);\n    res.setHeader(\"cache-control\", \"private, max-age=0\");\n    res.setHeader(\"content-type\", `multipart/mixed; boundary=${form.getBoundary()}`);\n    res.write(form.getBuffer());\n    res.end();\n}\nasync function putNoUpdateAvailableInResponseAsync(req, res, protocolVersion) {\n    if (protocolVersion === 0) {\n        throw new Error(\"NoUpdateAvailable directive not available in protocol version 0\");\n    }\n    const directive = await (0,_common_helpers__WEBPACK_IMPORTED_MODULE_3__.createNoUpdateAvailableDirectiveAsync)();\n    let signature = null;\n    const expectSignatureHeader = req.headers[\"expo-expect-signature\"];\n    if (expectSignatureHeader) {\n        const privateKey = await (0,_common_helpers__WEBPACK_IMPORTED_MODULE_3__.getPrivateKeyAsync)();\n        if (!privateKey) {\n            res.statusCode = 400;\n            res.json({\n                error: \"Code signing requested but no key supplied when starting server.\"\n            });\n            return;\n        }\n        const directiveString = JSON.stringify(directive);\n        const hashSignature = (0,_common_helpers__WEBPACK_IMPORTED_MODULE_3__.signRSASHA256)(directiveString, privateKey);\n        const dictionary = (0,_common_helpers__WEBPACK_IMPORTED_MODULE_3__.convertToDictionaryItemsRepresentation)({\n            sig: hashSignature,\n            keyid: \"main\"\n        });\n        signature = (0,structured_headers__WEBPACK_IMPORTED_MODULE_2__.serializeDictionary)(dictionary);\n    }\n    const form = new (form_data__WEBPACK_IMPORTED_MODULE_0___default())();\n    form.append(\"directive\", JSON.stringify(directive), {\n        contentType: \"application/json\",\n        header: {\n            \"content-type\": \"application/json; charset=utf-8\",\n            ...signature ? {\n                \"expo-signature\": signature\n            } : {}\n        }\n    });\n    res.statusCode = 200;\n    res.setHeader(\"expo-protocol-version\", 1);\n    res.setHeader(\"expo-sfv-version\", 0);\n    res.setHeader(\"cache-control\", \"private, max-age=0\");\n    res.setHeader(\"content-type\", `multipart/mixed; boundary=${form.getBoundary()}`);\n    res.write(form.getBuffer());\n    res.end();\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,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RixHQUFHLENBQUNvRSxTQUFTLENBQUMsdUJBQXVCLEVBQUUsQ0FBQyxDQUFDLENBQUM7SUFDMUNwRSxHQUFHLENBQUNvRSxTQUFTLENBQUMsa0JBQWtCLEVBQUUsQ0FBQyxDQUFDLENBQUM7SUFDckNwRSxHQUFHLENBQUNvRSxTQUFTLENBQUMsZUFBZSxFQUFFLG9CQUFvQixDQUFDLENBQUM7SUFDckRwRSxHQUFHLENBQUNvRSxTQUFTLENBQUMsY0FBYyxFQUFFLENBQUMsMEJBQTBCLEVBQUVKLElBQUksQ0FBQ0ssV0FBVyxFQUFFLENBQUMsQ0FBQyxDQUFDLENBQUM7SUFDakZyRSxHQUFHLENBQUNzRSxLQUFLLENBQUNOLElBQUksQ0FBQ08sU0FBUyxFQUFFLENBQUMsQ0FBQztJQUM1QnZFLEdBQUcsQ0FBQ3dFLEdBQUcsRUFBRSxDQUFDO0NBQ1giLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9jdXN0b20tZXhwby11cGRhdGVzLXNlcnZlci8uL3BhZ2VzL2FwaS9tYW5pZmVzdC50cz84NzllIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBGb3JtRGF0YSBmcm9tICdmb3JtLWRhdGEnO1xuaW1wb3J0IGZzIGZyb20gJ2ZzL3Byb21pc2VzJztcbmltcG9ydCB7IE5leHRBcGlSZXF1ZXN0LCBOZXh0QXBpUmVzcG9uc2UgfSBmcm9tICduZXh0JztcbmltcG9ydCB7IHNlcmlhbGl6ZURpY3Rpb25hcnkgfSBmcm9tICdzdHJ1Y3R1cmVkLWhlYWRlcnMnO1xuXG5pbXBvcnQge1xuICBnZXRBc3NldE1ldGFkYXRhQXN5bmMsXG4gIGdldE1ldGFkYXRhQXN5bmMsXG4gIGNvbnZlcnRTSEEyNTZIYXNoVG9VVUlELFxuICBjb252ZXJ0VG9EaWN0aW9uYXJ5SXRlbXNSZXByZXNlbnRhdGlvbixcbiAgc2lnblJTQVNIQTI1NixcbiAgZ2V0UHJpdmF0ZUtleUFzeW5jLFxuICBnZXRFeHBvQ29uZmlnQXN5bmMsXG4gIGdldExhdGVzdFVwZGF0ZUJ1bmRsZVBhdGhGb3JSdW50aW1lVmVyc2lvbkFzeW5jLFxuICBjcmVhdGVSb2xsQmFja0RpcmVjdGl2ZUFzeW5jLFxuICBOb1VwZGF0ZUF2YWlsYWJsZUVycm9yLFxuICBjcmVhdGVOb1VwZGF0ZUF2YWlsYWJsZURpcmVjdGl2ZUFzeW5jLFxufSBmcm9tICcuLi8uLi9jb21tb24vaGVscGVycyc7XG5cbmV4cG9ydCBkZWZhdWx0IGFzeW5jIGZ1bmN0aW9uIG1hbmlmZXN0RW5kcG9pbnQocmVxOiBOZXh0QXBpUmVxdWVzdCwgcmVzOiBOZXh0QXBpUmVzcG9uc2UpIHtcbiAgaWYgKHJlcS5tZXRob2QgIT09ICdHRVQnKSB7XG4gICAgcmVzLnN0YXR1c0NvZGUgPSA0MDU7XG4gICAgcmVzLmpzb24oeyBlcnJvcjogJ0V4cGVjdGVkIEdFVC4nIH0pO1xuICAgIHJldHVybjtcbiAgfVxuXG4gIGNvbnN0IHByb3RvY29sVmVyc2lvbk1heWJlQXJyYXkgPSByZXEuaGVhZGVyc1snZXhwby1wcm90b2NvbC12ZXJzaW9uJ107XG4gIGlmIChwcm90b2NvbFZlcnNpb25NYXliZUFycmF5ICYmIEFycmF5LmlzQXJyYXkocHJvdG9jb2xWZXJzaW9uTWF5YmVBcnJheSkpIHtcbiAgICByZXMuc3RhdHVzQ29kZSA9IDQwMDtcbiAgICByZXMuanNvbih7XG4gICAgICBlcnJvcjogJ1Vuc3VwcG9ydGVkIHByb3RvY29sIHZlcnNpb24uIEV4cGVjdGVkIGVpdGhlciAwIG9yIDEuJyxcbiAgICB9KTtcbiAgICByZXR1cm47XG4gIH1cbiAgY29uc3QgcHJvdG9jb2xWZXJzaW9uID0gcGFyc2VJbnQocHJvdG9jb2xWZXJzaW9uTWF5YmVBcnJheSA/PyAnMCcsIDEwKTtcblxuICBjb25zdCBwbGF0Zm9ybSA9IHJlcS5oZWFkZXJzWydleHBvLXBsYXRmb3JtJ10gPz8gcmVxLnF1ZXJ5WydwbGF0Zm9ybSddO1xuICBpZiAocGxhdGZvcm0gIT09ICdpb3MnICYmIHBsYXRmb3JtICE9PSAnYW5kcm9pZCcpIHtcbiAgICByZXMuc3RhdHVzQ29kZSA9IDQwMDtcbiAgICByZXMuanNvbih7XG4gICAgICBlcnJvcjogJ1Vuc3VwcG9ydGVkIHBsYXRmb3JtLiBFeHBlY3RlZCBlaXRoZXIgaW9zIG9yIGFuZHJvaWQuJyxcbiAgICB9KTtcbiAgICByZXR1cm47XG4gIH1cblxuICBjb25zdCBydW50aW1lVmVyc2lvbiA9IHJlcS5oZWFkZXJzWydleHBvLXJ1bnRpbWUtdmVyc2lvbiddID8/IHJlcS5xdWVyeVsncnVudGltZS12ZXJzaW9uJ107XG4gIGlmICghcnVudGltZVZlcnNpb24gfHwgdHlwZW9mIHJ1bnRpbWVWZXJzaW9uICE9PSAnc3RyaW5nJykge1xuICAgIHJlcy5zdGF0dXNDb2RlID0gNDAwO1xuICAgIHJlcy5qc29uKHtcbiAgICAgIGVycm9yOiAnTm8gcnVudGltZVZlcnNpb24gcHJvdmlkZWQuJyxcbiAgICB9KTtcbiAgICByZXR1cm47XG4gIH1cblxuICBsZXQgdXBkYXRlQnVuZGxlUGF0aDogc3RyaW5nO1xuICB0cnkge1xuICAgIHVwZGF0ZUJ1bmRsZVBhdGggPSBhd2FpdCBnZXRMYXRlc3RVcGRhdGVCdW5kbGVQYXRoRm9yUnVudGltZVZlcnNpb25Bc3luYyhydW50aW1lVmVyc2lvbik7XG4gIH0gY2F0Y2ggKGVycm9yOiBhbnkpIHtcbiAgICByZXMuc3RhdHVzQ29kZSA9IDQwNDtcbiAgICByZXMuanNvbih7XG4gICAgICBlcnJvcjogZXJyb3IubWVzc2FnZSxcbiAgICB9KTtcbiAgICByZXR1cm47XG4gIH1cblxuICBjb25zdCB1cGRhdGVUeXBlID0gYXdhaXQgZ2V0VHlwZU9mVXBkYXRlQXN5bmModXBkYXRlQnVuZGxlUGF0aCk7XG5cbiAgdHJ5IHtcbiAgICB0cnkge1xuICAgICAgaWYgKHVwZGF0ZVR5cGUgPT09IFVwZGF0ZVR5cGUuTk9STUFMX1VQREFURSkge1xuICAgICAgICBhd2FpdCBwdXRVcGRhdGVJblJlc3BvbnNlQXN5bmMoXG4gICAgICAgICAgcmVxLFxuICAgICAgICAgIHJlcyxcbiAgICAgICAgICB1cGRhdGVCdW5kbGVQYXRoLFxuICAgICAgICAgIHJ1bnRpbWVWZXJzaW9uLFxuICAgICAgICAgIHBsYXRmb3JtLFxuICAgICAgICAgIHByb3RvY29sVmVyc2lvblxuICAgICAgICApO1xuICAgICAgfSBlbHNlIGlmICh1cGRhdGVUeXBlID09PSBVcGRhdGVUeXBlLlJPTExCQUNLKSB7XG4gICAgICAgIGF3YWl0IHB1dFJvbGxCYWNrSW5SZXNwb25zZUFzeW5jKHJlcSwgcmVzLCB1cGRhdGVCdW5kbGVQYXRoLCBwcm90b2NvbFZlcnNpb24pO1xuICAgICAgfVxuICAgIH0gY2F0Y2ggKG1heWJlTm9VcGRhdGVBdmFpbGFibGVFcnJvcikge1xuICAgICAgaWYgKG1heWJlTm9VcGRhdGVBdmFpbGFibGVFcnJvciBpbnN0YW5jZW9mIE5vVXBkYXRlQXZhaWxhYmxlRXJyb3IpIHtcbiAgICAgICAgYXdhaXQgcHV0Tm9VcGRhdGVBdmFpbGFibGVJblJlc3BvbnNlQXN5bmMocmVxLCByZXMsIHByb3RvY29sVmVyc2lvbik7XG4gICAgICAgIHJldHVybjtcbiAgICAgIH1cbiAgICAgIHRocm93IG1heWJlTm9VcGRhdGVBdmFpbGFibGVFcnJvcjtcbiAgICB9XG4gIH0gY2F0Y2ggKGVycm9yKSB7XG4gICAgY29uc29sZS5lcnJvcihlcnJvcik7XG4gICAgcmVzLnN0YXR1c0NvZGUgPSA0MDQ7XG4gICAgcmVzLmpzb24oeyBlcnJvciB9KTtcbiAgfVxufVxuXG5lbnVtIFVwZGF0ZVR5cGUge1xuICBOT1JNQUxfVVBEQVRFLFxuICBST0xMQkFDSyxcbn1cblxuYXN5bmMgZnVuY3Rpb24gZ2V0VHlwZU9mVXBkYXRlQXN5bmModXBkYXRlQnVuZGxlUGF0aDogc3RyaW5nKTogUHJvbWlzZTxVcGRhdGVUeXBlPiB7XG4gIGNvbnN0IGRpcmVjdG9yeUNvbnRlbnRzID0gYXdhaXQgZnMucmVhZGRpcih1cGRhdGVCdW5kbGVQYXRoKTtcbiAgcmV0dXJuIGRpcmVjdG9yeUNvbnRlbnRzLmluY2x1ZGVzKCdyb2xsYmFjaycpID8gVXBkYXRlVHlwZS5ST0xMQkFDSyA6IFVwZGF0ZVR5cGUuTk9STUFMX1VQREFURTtcbn1cblxuYXN5bmMgZnVuY3Rpb24gcHV0VXBkYXRlSW5SZXNwb25zZUFzeW5jKFxuICByZXE6IE5leHRBcGlSZXF1ZXN0LFxuICByZXM6IE5leHRBcGlSZXNwb25zZSxcbiAgdXBkYXRlQnVuZGxlUGF0aDogc3RyaW5nLFxuICBydW50aW1lVmVyc2lvbjogc3RyaW5nLFxuICBwbGF0Zm9ybTogc3RyaW5nLFxuICBwcm90b2NvbFZlcnNpb246IG51bWJlclxuKTogUHJvbWlzZTx2b2lkPiB7XG4gIGNvbnN0IGN1cnJlbnRVcGRhdGVJZCA9IHJlcS5oZWFkZXJzWydleHBvLWN1cnJlbnQtdXBkYXRlLWlkJ107XG4gIGNvbnN0IHsgbWV0YWRhdGFKc29uLCBjcmVhdGVkQXQsIGlkIH0gPSBhd2FpdCBnZXRNZXRhZGF0YUFzeW5jKHtcbiAgICB1cGRhdGVCdW5kbGVQYXRoLFxuICAgIHJ1bnRpbWVWZXJzaW9uLFxuICB9KTtcblxuICAvLyBOb1VwZGF0ZUF2YWlsYWJsZSBkaXJlY3RpdmUgb25seSBzdXBwb3J0ZWQgb24gcHJvdG9jb2wgdmVyc2lvbiAxXG4gIC8vIGZvciBwcm90b2NvbCB2ZXJzaW9uIDAsIHNlcnZlIG1vc3QgcmVjZW50IHVwZGF0ZSBhcyBub3JtYWxcbiAgaWYgKGN1cnJlbnRVcGRhdGVJZCA9PT0gaWQgJiYgcHJvdG9jb2xWZXJzaW9uID09PSAxKSB7XG4gICAgdGhyb3cgbmV3IE5vVXBkYXRlQXZhaWxhYmxlRXJyb3IoKTtcbiAgfVxuXG4gIGNvbnN0IGV4cG9Db25maWcgPSBhd2FpdCBnZXRFeHBvQ29uZmlnQXN5bmMoe1xuICAgIHVwZGF0ZUJ1bmRsZVBhdGgsXG4gICAgcnVudGltZVZlcnNpb24sXG4gIH0pO1xuICBjb25zdCBwbGF0Zm9ybVNwZWNpZmljTWV0YWRhdGEgPSBtZXRhZGF0YUpzb24uZmlsZU1ldGFkYXRhW3BsYXRmb3JtXTtcbiAgY29uc3QgbWFuaWZlc3QgPSB7XG4gICAgaWQ6IGNvbnZlcnRTSEEyNTZIYXNoVG9VVUlEKGlkKSxcbiAgICBjcmVhdGVkQXQsXG4gICAgcnVudGltZVZlcnNpb24sXG4gICAgYXNzZXRzOiBhd2FpdCBQcm9taXNlLmFsbChcbiAgICAgIChwbGF0Zm9ybVNwZWNpZmljTWV0YWRhdGEuYXNzZXRzIGFzIGFueVtdKS5tYXAoKGFzc2V0OiBhbnkpID0+XG4gICAgICAgIGdldEFzc2V0TWV0YWRhdGFBc3luYyh7XG4gICAgICAgICAgdXBkYXRlQnVuZGxlUGF0aCxcbiAgICAgICAgICBmaWxlUGF0aDogYXNzZXQucGF0aCxcbiAgICAgICAgICBleHQ6IGFzc2V0LmV4dCxcbiAgICAgICAgICBydW50aW1lVmVyc2lvbixcbiAgICAgICAgICBwbGF0Zm9ybSxcbiAgICAgICAgICBpc0xhdW5jaEFzc2V0OiBmYWxzZSxcbiAgICAgICAgfSlcbiAgICAgIClcbiAgICApLFxuICAgIGxhdW5jaEFzc2V0OiBhd2FpdCBnZXRBc3NldE1ldGFkYXRhQXN5bmMoe1xuICAgICAgdXBkYXRlQnVuZGxlUGF0aCxcbiAgICAgIGZpbGVQYXRoOiBwbGF0Zm9ybVNwZWNpZmljTWV0YWRhdGEuYnVuZGxlLFxuICAgICAgaXNMYXVuY2hBc3NldDogdHJ1ZSxcbiAgICAgIHJ1bnRpbWVWZXJzaW9uLFxuICAgICAgcGxhdGZvcm0sXG4gICAgICBleHQ6IG51bGwsXG4gICAgfSksXG4gICAgbWV0YWRhdGE6IHt9LFxuICAgIGV4dHJhOiB7XG4gICAgICBleHBvQ2xpZW50OiBleHBvQ29uZmlnLFxuICAgIH0sXG4gIH07XG5cbiAgbGV0IHNpZ25hdHVyZSA9IG51bGw7XG4gIGNvbnN0IGV4cGVjdFNpZ25hdHVyZUhlYWRlciA9IHJlcS5oZWFkZXJzWydleHBvLWV4cGVjdC1zaWduYXR1cmUnXTtcbiAgaWYgKGV4cGVjdFNpZ25hdHVyZUhlYWRlcikge1xuICAgIGNvbnN0IHByaXZhdGVLZXkgPSBhd2FpdCBnZXRQcml2YXRlS2V5QXN5bmMoKTtcbiAgICBpZiAoIXByaXZhdGVLZXkpIHtcbiAgICAgIHJlcy5zdGF0dXNDb2RlID0gNDAwO1xuICAgICAgcmVzLmpzb24oe1xuICAgICAgICBlcnJvcjogJ0NvZGUgc2lnbmluZyByZXF1ZXN0ZWQgYnV0IG5vIGtleSBzdXBwbGllZCB3aGVuIHN0YXJ0aW5nIHNlcnZlci4nLFxuICAgICAgfSk7XG4gICAgICByZXR1cm47XG4gICAgfVxuICAgIGNvbnN0IG1hbmlmZXN0U3RyaW5nID0gSlNPTi5zdHJpbmdpZnkobWFuaWZlc3QpO1xuICAgIGNvbnN0IGhhc2hTaWduYXR1cmUgPSBzaWduUlNBU0hBMjU2KG1hbmlmZXN0U3RyaW5nLCBwcml2YXRlS2V5KTtcbiAgICBjb25zdCBkaWN0aW9uYXJ5ID0gY29udmVydFRvRGljdGlvbmFyeUl0ZW1zUmVwcmVzZW50YXRpb24oe1xuICAgICAgc2lnOiBoYXNoU2lnbmF0dXJlLFxuICAgICAga2V5aWQ6ICdtYWluJyxcbiAgICB9KTtcbiAgICBzaWduYXR1cmUgPSBzZXJpYWxpemVEaWN0aW9uYXJ5KGRpY3Rpb25hcnkpO1xuICB9XG5cbiAgY29uc3QgYXNzZXRSZXF1ZXN0SGVhZGVyczogeyBba2V5OiBzdHJpbmddOiBvYmplY3QgfSA9IHt9O1xuICBbLi4ubWFuaWZlc3QuYXNzZXRzLCBtYW5pZmVzdC5sYXVuY2hBc3NldF0uZm9yRWFjaCgoYXNzZXQpID0+IHtcbiAgICBhc3NldFJlcXVlc3RIZWFkZXJzW2Fzc2V0LmtleV0gPSB7XG4gICAgICAndGVzdC1oZWFkZXInOiAndGVzdC1oZWFkZXItdmFsdWUnLFxuICAgIH07XG4gIH0pO1xuXG4gIGNvbnN0IGZvcm0gPSBuZXcgRm9ybURhdGEoKTtcbiAgZm9ybS5hcHBlbmQoJ21hbmlmZXN0JywgSlNPTi5zdHJpbmdpZnkobWFuaWZlc3QpLCB7XG4gICAgY29udGVudFR5cGU6ICdhcHBsaWNhdGlvbi9qc29uJyxcbiAgICBoZWFkZXI6IHtcbiAgICAgICdjb250ZW50LXR5cGUnOiAnYXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOCcsXG4gICAgICAuLi4oc2lnbmF0dXJlID8geyAnZXhwby1zaWduYXR1cmUnOiBzaWduYXR1cmUgfSA6IHt9KSxcbiAgICB9LFxuICB9KTtcbiAgZm9ybS5hcHBlbmQoJ2V4dGVuc2lvbnMnLCBKU09OLnN0cmluZ2lmeSh7IGFzc2V0UmVxdWVzdEhlYWRlcnMgfSksIHtcbiAgICBjb250ZW50VHlwZTogJ2FwcGxpY2F0aW9uL2pzb24nLFxuICB9KTtcblxuICByZXMuc3RhdHVzQ29kZSA9IDIwMDtcbiAgcmVzLnNldEhlYWRlcignZXhwby1wcm90b2NvbC12ZXJzaW9uJywgcHJvdG9jb2xWZXJzaW9uKTtcbiAgcmVzLnNldEhlYWRlcignZXhwby1zZnYtdmVyc2lvbicsIDApO1xuICByZXMuc2V0SGVhZGVyKCdjYWNoZS1jb250cm9sJywgJ3ByaXZhdGUsIG1heC1hZ2U9MCcpO1xuICByZXMuc2V0SGVhZGVyKCdjb250ZW50LXR5cGUnLCBgbXVsdGlwYXJ0L21peGVkOyBib3VuZGFyeT0ke2Zvcm0uZ2V0Qm91bmRhcnkoKX1gKTtcbiAgcmVzLndyaXRlKGZvcm0uZ2V0QnVmZmVyKCkpO1xuICByZXMuZW5kKCk7XG59XG5cbmFzeW5jIGZ1bmN0aW9uIHB1dFJvbGxCYWNrSW5SZXNwb25zZUFzeW5jKFxuICByZXE6IE5leHRBcGlSZXF1ZXN0LFxuICByZXM6IE5leHRBcGlSZXNwb25zZSxcbiAgdXBkYXRlQnVuZGxlUGF0aDogc3RyaW5nLFxuICBwcm90b2NvbFZlcnNpb246IG51bWJlclxuKTogUHJvbWlzZTx2b2lkPiB7XG4gIGlmIChwcm90b2NvbFZlcnNpb24gPT09IDApIHtcbiAgICB0aHJvdyBuZXcgRXJyb3IoJ1JvbGxiYWNrcyBub3Qgc3VwcG9ydGVkIG9uIHByb3RvY29sIHZlcnNpb24gMCcpO1xuICB9XG5cbiAgY29uc3QgZW1iZWRkZWRVcGRhdGVJZCA9IHJlcS5oZWFkZXJzWydleHBvLWVtYmVkZGVkLXVwZGF0ZS1pZCddO1xuICBpZiAoIWVtYmVkZGVkVXBkYXRlSWQgfHwgdHlwZW9mIGVtYmVkZGVkVXBkYXRlSWQgIT09ICdzdHJpbmcnKSB7XG4gICAgdGhyb3cgbmV3IEVycm9yKCdJbnZhbGlkIEV4cG8tRW1iZWRkZWQtVXBkYXRlLUlEIHJlcXVlc3QgaGVhZGVyIHNwZWNpZmllZC4nKTtcbiAgfVxuXG4gIGNvbnN0IGN1cnJlbnRVcGRhdGVJZCA9IHJlcS5oZWFkZXJzWydleHBvLWN1cnJlbnQtdXBkYXRlLWlkJ107XG4gIGlmIChjdXJyZW50VXBkYXRlSWQgPT09IGVtYmVkZGVkVXBkYXRlSWQpIHtcbiAgICB0aHJvdyBuZXcgTm9VcGRhdGVBdmFpbGFibGVFcnJvcigpO1xuICB9XG5cbiAgY29uc3QgZGlyZWN0aXZlID0gYXdhaXQgY3JlYXRlUm9sbEJhY2tEaXJlY3RpdmVBc3luYyh1cGRhdGVCdW5kbGVQYXRoKTtcblxuICBsZXQgc2lnbmF0dXJlID0gbnVsbDtcbiAgY29uc3QgZXhwZWN0U2lnbmF0dXJlSGVhZGVyID0gcmVxLmhlYWRlcnNbJ2V4cG8tZXhwZWN0LXNpZ25hdHVyZSddO1xuICBpZiAoZXhwZWN0U2lnbmF0dXJlSGVhZGVyKSB7XG4gICAgY29uc3QgcHJpdmF0ZUtleSA9IGF3YWl0IGdldFByaXZhdGVLZXlBc3luYygpO1xuICAgIGlmICghcHJpdmF0ZUtleSkge1xuICAgICAgcmVzLnN0YXR1c0NvZGUgPSA0MDA7XG4gICAgICByZXMuanNvbih7XG4gICAgICAgIGVycm9yOiAnQ29kZSBzaWduaW5nIHJlcXVlc3RlZCBidXQgbm8ga2V5IHN1cHBsaWVkIHdoZW4gc3RhcnRpbmcgc2VydmVyLicsXG4gICAgICB9KTtcbiAgICAgIHJldHVybjtcbiAgICB9XG4gICAgY29uc3QgZGlyZWN0aXZlU3RyaW5nID0gSlNPTi5zdHJpbmdpZnkoZGlyZWN0aXZlKTtcbiAgICBjb25zdCBoYXNoU2lnbmF0dXJlID0gc2lnblJTQVNIQTI1NihkaXJlY3RpdmVTdHJpbmcsIHByaXZhdGVLZXkpO1xuICAgIGNvbnN0IGRpY3Rpb25hcnkgPSBjb252ZXJ0VG9EaWN0aW9uYXJ5SXRlbXNSZXByZXNlbnRhdGlvbih7XG4gICAgICBzaWc6IGhhc2hTaWduYXR1cmUsXG4gICAgICBrZXlpZDogJ21haW4nLFxuICAgIH0pO1xuICAgIHNpZ25hdHVyZSA9IHNlcmlhbGl6ZURpY3Rpb25hcnkoZGljdGlvbmFyeSk7XG4gIH1cblxuICBjb25zdCBmb3JtID0gbmV3IEZvcm1EYXRhKCk7XG4gIGZvcm0uYXBwZW5kKCdkaXJlY3RpdmUnLCBKU09OLnN0cmluZ2lmeShkaXJlY3RpdmUpLCB7XG4gICAgY29udGVudFR5cGU6ICdhcHBsaWNhdGlvbi9qc29uJyxcbiAgICBoZWFkZXI6IHtcbiAgICAgICdjb250ZW50LXR5cGUnOiAnYXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOCcsXG4gICAgICAuLi4oc2lnbmF0dXJlID8geyAnZXhwby1zaWduYXR1cmUnOiBzaWduYXR1cmUgfSA6IHt9KSxcbiAgICB9LFxuICB9KTtcblxuICByZXMuc3RhdHVzQ29kZSA9IDIwMDtcbiAgcmVzLnNldEhlYWRlcignZXhwby1wcm90b2NvbC12ZXJzaW9uJywgMSk7XG4gIHJlcy5zZXRIZWFkZXIoJ2V4cG8tc2Z2LXZlcnNpb24nLCAwKTtcbiAgcmVzLnNldEhlYWRlcignY2FjaGUtY29udHJvbCcsICdwcml2YXRlLCBtYXgtYWdlPTAnKTtcbiAgcmVzLnNldEhlYWRlcignY29udGVudC10eXBlJywgYG11bHRpcGFydC9taXhlZDsgYm91bmRhcnk9JHtmb3JtLmdldEJvdW5kYXJ5KCl9YCk7XG4gIHJlcy53cml0ZShmb3JtLmdldEJ1ZmZlcigpKTtcbiAgcmVzLmVuZCgpO1xufVxuXG5hc3luYyBmdW5jdGlvbiBwdXROb1VwZGF0ZUF2YWlsYWJsZUluUmVzcG9uc2VBc3luYyhcbiAgcmVxOiBOZXh0QXBpUmVxdWVzdCxcbiAgcmVzOiBOZXh0QXBpUmVzcG9uc2UsXG4gIHByb3RvY29sVmVyc2lvbjogbnVtYmVyXG4pOiBQcm9taXNlPHZvaWQ+IHtcbiAgaWYgKHByb3RvY29sVmVyc2lvbiA9PT0gMCkge1xuICAgIHRocm93IG5ldyBFcnJvcignTm9VcGRhdGVBdmFpbGFibGUgZGlyZWN0aXZlIG5vdCBhdmFpbGFibGUgaW4gcHJvdG9jb2wgdmVyc2lvbiAwJyk7XG4gIH1cblxuICBjb25zdCBkaXJlY3RpdmUgPSBhd2FpdCBjcmVhdGVOb1VwZGF0ZUF2YWlsYWJsZURpcmVjdGl2ZUFzeW5jKCk7XG5cbiAgbGV0IHNpZ25hdHVyZSA9IG51bGw7XG4gIGNvbnN0IGV4cGVjdFNpZ25hdHVyZUhlYWRlciA9IHJlcS5oZWFkZXJzWydleHBvLWV4cGVjdC1zaWduYXR1cmUnXTtcbiAgaWYgKGV4cGVjdFNpZ25hdHVyZUhlYWRlcikge1xuICAgIGNvbnN0IHByaXZhdGVLZXkgPSBhd2FpdCBnZXRQcml2YXRlS2V5QXN5bmMoKTtcbiAgICBpZiAoIXByaXZhdGVLZXkpIHtcbiAgICAgIHJlcy5zdGF0dXNDb2RlID0gNDAwO1xuICAgICAgcmVzLmpzb24oe1xuICAgICAgICBlcnJvcjogJ0NvZGUgc2lnbmluZyByZXF1ZXN0ZWQgYnV0IG5vIGtleSBzdXBwbGllZCB3aGVuIHN0YXJ0aW5nIHNlcnZlci4nLFxuICAgICAgfSk7XG4gICAgICByZXR1cm47XG4gICAgfVxuICAgIGNvbnN0IGRpcmVjdGl2ZVN0cmluZyA9IEpTT04uc3RyaW5naWZ5KGRpcmVjdGl2ZSk7XG4gICAgY29uc3QgaGFzaFNpZ25hdHVyZSA9IHNpZ25SU0FTSEEyNTYoZGlyZWN0aXZlU3RyaW5nLCBwcml2YXRlS2V5KTtcbiAgICBjb25zdCBkaWN0aW9uYXJ5ID0gY29udmVydFRvRGljdGlvbmFyeUl0ZW1zUmVwcmVzZW50YXRpb24oe1xuICAgICAgc2lnOiBoYXNoU2lnbmF0dXJlLFxuICAgICAga2V5aWQ6ICdtYWluJyxcbiAgICB9KTtcbiAgICBzaWduYXR1cmUgPSBzZXJpYWxpemVEaWN0aW9uYXJ5KGRpY3Rpb25hcnkpO1xuICB9XG5cbiAgY29uc3QgZm9ybSA9IG5ldyBGb3JtRGF0YSgpO1xuICBmb3JtLmFwcGVuZCgnZGlyZWN0aXZlJywgSlNPTi5zdHJpbmdpZnkoZGlyZWN0aXZlKSwge1xuICAgIGNvbnRlbnRUeXBlOiAnYXBwbGljYXRpb24vanNvbicsXG4gICAgaGVhZGVyOiB7XG4gICAgICAnY29udGVudC10eXBlJzogJ2FwcGxpY2F0aW9uL2pzb247IGNoYXJzZXQ9dXRmLTgnLFxuICAgICAgLi4uKHNpZ25hdHVyZSA/IHsgJ2V4cG8tc2lnbmF0dXJlJzogc2lnbmF0dXJlIH0gOiB7fSksXG4gICAgfSxcbiAgfSk7XG5cbiAgcmVzLnN0YXR1c0NvZGUgPSAyMDA7XG4gIHJlcy5zZXRIZWFkZXIoJ2V4cG8tcHJvdG9jb2wtdmVyc2lvbicsIDEpO1xuICByZXMuc2V0SGVhZGVyKCdleHBvLXNmdi12ZXJzaW9uJywgMCk7XG4gIHJlcy5zZXRIZWFkZXIoJ2NhY2hlLWNvbnRyb2wnLCAncHJpdmF0ZSwgbWF4LWFnZT0wJyk7XG4gIHJlcy5zZXRIZWFkZXIoJ2NvbnRlbnQtdHlwZScsIGBtdWx0aXBhcnQvbWl4ZWQ7IGJvdW5kYXJ5PSR7Zm9ybS5nZXRCb3VuZGFyeSgpfWApO1xuICByZXMud3JpdGUoZm9ybS5nZXRCdWZmZXIoKSk7XG4gIHJlcy5lbmQoKTtcbn1cbiJdLCJuYW1lcyI6WyJGb3JtRGF0YSIsImZzIiwic2VyaWFsaXplRGljdGlvbmFyeSIsImdldEFzc2V0TWV0YWRhdGFBc3luYyIsImdldE1ldGFkYXRhQXN5bmMiLCJjb252ZXJ0U0hBMjU2SGFzaFRvVVVJRCIsImNvbnZlcnRUb0RpY3Rpb25hcnlJdGVtc1JlcHJlc2VudGF0aW9uIiwic2lnblJTQVNIQTI1NiIsImdldFByaXZhdGVLZXlBc3luYyIsImdldEV4cG9Db25maWdBc3luYyIsImdldExhdGVzdFVwZGF0ZUJ1bmRsZVBhdGhGb3JSdW50aW1lVmVyc2lvbkFzeW5jIiwiY3JlYXRlUm9sbEJhY2tEaXJlY3RpdmVBc3luYyIsIk5vVXBkYXRlQXZhaWxhYmxlRXJyb3IiLCJjcmVhdGVOb1VwZGF0ZUF2YWlsYWJsZURpcmVjdGl2ZUFzeW5jIiwibWFuaWZlc3RFbmRwb2ludCIsInJlcSIsInJlcyIsIm1ldGhvZCIsInN0YXR1c0NvZGUiLCJqc29uIiwiZXJyb3IiLCJwcm90b2NvbFZlcnNpb25NYXliZUFycmF5IiwiaGVhZGVycyIsIkFycmF5IiwiaXNBcnJheSIsInByb3RvY29sVmVyc2lvbiIsInBhcnNlSW50IiwicGxhdGZvcm0iLCJxdWVyeSIsInJ1bnRpbWVWZXJzaW9uIiwidXBkYXRlQnVuZGxlUGF0aCIsIm1lc3NhZ2UiLCJ1cGRhdGVUeXBlIiwiZ2V0VHlwZU9mVXBkYXRlQXN5bmMiLCJVcGRhdGVUeXBlIiwiTk9STUFMX1VQREFURSIsInB1dFVwZGF0ZUluUmVzcG9uc2VBc3luYyIsIlJPTExCQUNLIiwicHV0Um9sbEJhY2tJblJlc3BvbnNlQXN5bmMiLCJtYXliZU5vVXBkYXRlQXZhaWxhYmxlRXJyb3IiLCJwdXROb1VwZGF0ZUF2YWlsYWJsZUluUmVzcG9uc2VBc3luYyIsImNvbnNvbGUiLCJkaXJlY3RvcnlDb250ZW50cyIsInJlYWRkaXIiLCJpbmNsdWRlcyIsImN1cnJlbnRVcGRhdGVJZCIsIm1ldGFkYXRhSnNvbiIsImNyZWF0ZWRBdCIsImlkIiwiZXhwb0NvbmZpZyIsInBsYXRmb3JtU3BlY2lmaWNNZXRhZGF0YSIsImZpbGVNZXRhZGF0YSIsIm1hbmlmZXN0IiwiYXNzZXRzIiwiUHJvbWlzZSIsImFsbCIsIm1hcCIsImFzc2V0IiwiZmlsZVBhdGgiLCJwYXRoIiwiZXh0IiwiaXNMYXVuY2hBc3NldCIsImxhdW5jaEFzc2V0IiwiYnVuZGxlIiwibWV0YWRhdGEiLCJleHRyYSIsImV4cG9DbGllbnQiLCJzaWduYXR1cmUiLCJleHBlY3RTaWduYXR1cmVIZWFkZXIiLCJwcml2YXRlS2V5IiwibWFuaWZlc3RTdHJpbmciLCJKU09OIiwic3RyaW5naWZ5IiwiaGFzaFNpZ25hdHVyZSIsImRpY3Rpb25hcnkiLCJzaWciLCJrZXlpZCIsImFzc2V0UmVxdWVzdEhlYWRlcnMiLCJmb3JFYWNoIiwia2V5IiwiZm9ybSIsImFwcGVuZCIsImNvbnRlbnRUeXBlIiwiaGVhZGVyIiwic2V0SGVhZGVyIiwiZ2V0Qm91bmRhcnkiLCJ3cml0ZSIsImdldEJ1ZmZlciIsImVuZCIsIkVycm9yIiwiZW1iZWRkZWRVcGRhdGVJZCIsImRpcmVjdGl2ZSIsImRpcmVjdGl2ZVN0cmluZyJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(api)/./pages/api/manifest.ts\n");
 
 /***/ })
 
@@ -339,7 +110,7 @@ async function putNoUpdateAvailableInResponseAsync(req, res, protocolVersion) {
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [72], () => (__webpack_exec__(637)));
+var __webpack_exports__ = (__webpack_exec__("(api)/./pages/api/manifest.ts"));
 module.exports = __webpack_exports__;
 
 })();
