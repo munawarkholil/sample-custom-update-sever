@@ -50,8 +50,9 @@ export async function getLatestUpdateBundlePathForRuntimeVersionAsync(runtimeVer
   const directoriesInUpdatesDirectory = (
     await Promise.all(
       filesInUpdatesDirectory.map(async (file) => {
-        const fileStat = await fs.stat(path.join(updatesDirectoryForRuntimeVersion, file));
+        let fileStat = await fs.stat(path.join(updatesDirectoryForRuntimeVersion, file));
         console.log({ fileStat, file })
+        fileStat.birthtime = new Date(Number(file) * 1000)
         return fileStat.isDirectory() ? file : null;
       })
     )
