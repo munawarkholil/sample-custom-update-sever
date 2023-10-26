@@ -5,7 +5,7 @@ import mime from 'mime';
 import path from 'path';
 import { Dictionary } from 'structured-headers';
 
-export class NoUpdateAvailableError extends Error {}
+export class NoUpdateAvailableError extends Error { }
 
 function createHash(file: Buffer, hashingAlgorithm: string, encoding: BinaryToTextEncoding) {
   return crypto.createHash(hashingAlgorithm).update(file).digest(encoding);
@@ -51,6 +51,7 @@ export async function getLatestUpdateBundlePathForRuntimeVersionAsync(runtimeVer
     await Promise.all(
       filesInUpdatesDirectory.map(async (file) => {
         const fileStat = await fs.stat(path.join(updatesDirectoryForRuntimeVersion, file));
+        console.log({ fileStat })
         return fileStat.isDirectory() ? file : null;
       })
     )
@@ -62,21 +63,21 @@ export async function getLatestUpdateBundlePathForRuntimeVersionAsync(runtimeVer
 
 type GetAssetMetadataArg =
   | {
-      updateBundlePath: string;
-      filePath: string;
-      ext: null;
-      isLaunchAsset: true;
-      runtimeVersion: string;
-      platform: string;
-    }
+    updateBundlePath: string;
+    filePath: string;
+    ext: null;
+    isLaunchAsset: true;
+    runtimeVersion: string;
+    platform: string;
+  }
   | {
-      updateBundlePath: string;
-      filePath: string;
-      ext: string;
-      isLaunchAsset: false;
-      runtimeVersion: string;
-      platform: string;
-    };
+    updateBundlePath: string;
+    filePath: string;
+    ext: string;
+    isLaunchAsset: false;
+    runtimeVersion: string;
+    platform: string;
+  };
 
 export async function getAssetMetadataAsync(arg: GetAssetMetadataArg) {
   const assetFilePath = `${arg.updateBundlePath}/${arg.filePath}`;
@@ -99,6 +100,7 @@ export async function createRollBackDirectiveAsync(updateBundlePath: string) {
   try {
     const rollbackFilePath = `${updateBundlePath}/rollback`;
     const rollbackFileStat = await fs.stat(rollbackFilePath);
+    console.log({ rollbackFileStat })
     return {
       type: 'rollBackToEmbedded',
       parameters: {
@@ -128,7 +130,7 @@ export async function getMetadataAsync({
     const updateMetadataBuffer = await fs.readFile(path.resolve(metadataPath), null);
     const metadataJson = JSON.parse(updateMetadataBuffer.toString('utf-8'));
     const metadataStat = await fs.stat(metadataPath);
-
+    console.log({ metadataStat })
     return {
       metadataJson,
       createdAt: new Date(metadataStat.birthtime).toISOString(),
