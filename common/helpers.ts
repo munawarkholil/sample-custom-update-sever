@@ -131,7 +131,7 @@ export async function getMetadataAsync({
     const updateMetadataBuffer = await fs.readFile(path.resolve(metadataPath), null);
     const metadataJson = JSON.parse(updateMetadataBuffer.toString('utf-8'));
     const metadataStat = await fs.stat(metadataPath);
-    console.log({ metadataStat })
+    console.log({ metadataStat, metadataPath })
     return {
       metadataJson,
       createdAt: new Date(metadataStat.birthtime).toISOString(),
