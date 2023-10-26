@@ -51,6 +51,7 @@ export async function getLatestUpdateBundlePathForRuntimeVersionAsync(runtimeVer
     await Promise.all(
       filesInUpdatesDirectory.map(async (file) => {
         let fileStat = await fs.stat(path.join(updatesDirectoryForRuntimeVersion, file));
+        fileStat.birthtimeMs = Number(file) * 1000
         fileStat.birthtime = new Date(Number(file) * 1000)
         console.log({ fileStat, file })
         return fileStat.isDirectory() ? file : null;
@@ -130,7 +131,11 @@ export async function getMetadataAsync({
     const metadataPath = `${updateBundlePath}/metadata.json`;
     const updateMetadataBuffer = await fs.readFile(path.resolve(metadataPath), null);
     const metadataJson = JSON.parse(updateMetadataBuffer.toString('utf-8'));
+    const x = updateBundlePath.lastIndexOf('/')
+    const file = updateBundlePath.substring(x + 1)
     const metadataStat = await fs.stat(metadataPath);
+    metadataStat.birthtimeMs = Number(file) * 1000
+    metadataStat.birthtime = new Date(Number(file) * 1000)
     console.log({ metadataStat, metadataPath })
     return {
       metadataJson,
