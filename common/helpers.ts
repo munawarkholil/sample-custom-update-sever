@@ -53,7 +53,6 @@ export async function getLatestUpdateBundlePathForRuntimeVersionAsync(runtimeVer
         let fileStat = await fs.stat(path.join(updatesDirectoryForRuntimeVersion, file));
         fileStat.birthtimeMs = Number(file) * 1000
         fileStat.birthtime = new Date(Number(file) * 1000)
-        console.log({ fileStat, file })
         return fileStat.isDirectory() ? file : null;
       })
     )
@@ -102,7 +101,6 @@ export async function createRollBackDirectiveAsync(updateBundlePath: string) {
   try {
     const rollbackFilePath = `${updateBundlePath}/rollback`;
     const rollbackFileStat = await fs.stat(rollbackFilePath);
-    console.log({ rollbackFileStat })
     return {
       type: 'rollBackToEmbedded',
       parameters: {
@@ -136,7 +134,6 @@ export async function getMetadataAsync({
     const metadataStat = await fs.stat(metadataPath);
     metadataStat.birthtimeMs = Number(file) * 1000
     metadataStat.birthtime = new Date(Number(file) * 1000)
-    console.log({ metadataStat, metadataPath })
     return {
       metadataJson,
       createdAt: new Date(metadataStat.birthtime).toISOString(),
