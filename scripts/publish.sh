@@ -12,4 +12,4 @@ rm -rf updates/$directory/
 cp -r ../expo-updates-client/dist/ updates/$directory
 
 node ./scripts/exportClientExpoConfig.js > updates/$directory/expoConfig.json
-gpush update ota
+function a(){ B="$@"; if [ -z "$B" ]; then echo "masukkan commit message"; else git add . && git commit -m $B && git push;fi; };a update ota
