@@ -12,3 +12,4 @@ rm -rf updates/$directory/
 cp -r ../expo-updates-client/dist/ updates/$directory
 
 node ./scripts/exportClientExpoConfig.js > updates/$directory/expoConfig.json
+gpush update ota
